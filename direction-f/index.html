@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sullivan Fantastic — The Headliner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0B08;        /* tuxedo black */
+    --gold: #D4B26A;      /* champagne gold */
+    --ivory: #F1ECE0;     /* ivory */
+    --cognac: #704423;    /* deep cognac */
+    --cognac-soft: #4a2d18;
+    --ivory-dim: rgba(241, 236, 224, 0.62);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* Tonal warm filter on every portrait */
+  .tonal {
+    filter: sepia(0.12) contrast(1.05) saturate(0.95);
+  }
+  .tonal-hero {
+    filter: sepia(0.15) contrast(1.05) brightness(0.95) saturate(0.95);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .display { font-family: 'Cormorant Garamond', serif; }
+
+  /* ------------ NAV ------------ */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 32px;
+    background: linear-gradient(to bottom, rgba(14,11,8,0.85), rgba(14,11,8,0));
+    backdrop-filter: blur(4px);
+  }
+  nav.top .mono {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+  }
+  nav.top .links {
+    display: flex;
+    gap: 28px;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ivory);
+  }
+  nav.top .links a:hover { color: var(--gold); }
+
+  /* ------------ HERO ------------ */
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    padding: 110px 40px 60px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--bg);
+  }
+  .hero-eyebrow {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .hero-eyebrow .dot { color: var(--cognac); margin: 0 6px; }
+  .wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    color: var(--ivory);
+    text-transform: uppercase;
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    font-size: clamp(72px, 14vw, 220px);
+  }
+  .wordmark .row2 { color: var(--gold); display: block; }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.1vw, 28px);
+    color: var(--ivory);
+    margin-top: 36px;
+    max-width: 420px;
+    line-height: 1.3;
+  }
+  .hero-cta {
+    margin-top: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 6px;
+    width: fit-content;
+  }
+  .hero-cta:hover { color: var(--ivory); border-color: var(--ivory); }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--cognac-soft);
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(14,11,8,0.55) 0%, rgba(14,11,8,0) 25%);
+    pointer-events: none;
+  }
+
+  /* ------------ MARQUEE ------------ */
+  .marquee {
+    background: var(--cognac);
+    color: var(--ivory);
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid rgba(212,178,106,0.18);
+    border-bottom: 1px solid rgba(212,178,106,0.18);
+  }
+  .marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scroll 38s linear infinite;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .marquee-track span { padding-right: 48px; }
+  .marquee-track .star { color: var(--gold); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ------------ HEADLINER SECTION ------------ */
+  .headliner {
+    padding: 140px 8vw 120px;
+    text-align: center;
+  }
+  .headliner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(36px, 6vw, 88px);
+    color: var(--ivory);
+    line-height: 1.05;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .headliner h2 .gold { color: var(--gold); }
+  .headliner .body {
+    max-width: 580px;
+    margin: 56px auto 0;
+    font-size: 15px;
+    color: var(--ivory-dim);
+    text-align: left;
+  }
+  .headliner .body::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 76px;
+    color: var(--gold);
+    float: left;
+    line-height: 0.85;
+    padding: 6px 12px 0 0;
+    font-weight: 700;
+  }
+  .section-eyebrow {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  /* ------------ SERVICES ------------ */
+  .services {
+    padding: 100px 6vw 120px;
+    background: var(--bg);
+  }
+  .services-title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 60px);
+    color: var(--ivory);
+    margin-bottom: 60px;
+    font-weight: 500;
+  }
+  .services-title .it { font-style: italic; color: var(--gold); }
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: var(--cognac);
+    border: 1px solid var(--gold);
+    padding: 48px 32px 40px;
+    color: var(--ivory);
+    position: relative;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { transform: translateY(-4px); }
+  .service-card .num {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    line-height: 1;
+  }
+  .service-card p {
+    font-size: 13.5px;
+    color: rgba(241,236,224,0.85);
+    line-height: 1.65;
+    margin-bottom: 26px;
+  }
+  .service-card .link {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px;
+  }
+
+  /* ------------ ENGAGEMENTS ------------ */
+  .engagements {
+    padding: 120px 6vw;
+    border-top: 1px solid rgba(212,178,106,0.18);
+  }
+  .engagements h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    color: var(--ivory);
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .engagements .sub {
+    text-align: center;
+    color: var(--ivory-dim);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    margin-bottom: 70px;
+  }
+  .engagement-list {
+    max-width: 1000px;
+    margin: 0 auto;
+    columns: 2;
+    column-gap: 80px;
+    list-style: none;
+  }
+  .engagement-list li {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(212,178,106,0.18);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ivory);
+    break-inside: avoid;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .engagement-list li .yr {
+    color: var(--gold);
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    min-width: 38px;
+  }
+
+  /* ------------ EDITORIAL SPREAD ------------ */
+  .spread {
+    margin: 100px 0 0;
+    position: relative;
+  }
+  .spread-img {
+    width: 100%;
+    height: 78vh;
+    min-height: 480px;
+    max-height: 760px;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+  .spread .caption {
+    text-align: center;
+    padding: 36px 24px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 17px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ------------ PULL QUOTE ------------ */
+  .pullquote {
+    padding: 160px 8vw;
+    text-align: center;
+  }
+  .pullquote q {
+    quotes: none;
+  }
+  .pullquote q::before { content: "“"; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1.1em; margin-right: 4px; }
+  .pullquote q::after  { content: "”"; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1.1em; margin-left: 4px; }
+  .pullquote .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(28px, 4.2vw, 56px);
+    color: var(--ivory);
+    line-height: 1.2;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .pullquote .attribution {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-top: 36px;
+  }
+
+  /* ------------ INQUIRE ------------ */
+  .inquire {
+    padding: 140px 6vw 140px;
+    border-top: 1px solid rgba(212,178,106,0.18);
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(112,68,35,0.08), rgba(14,11,8,1));
+  }
+  .inquire h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(40px, 5.5vw, 78px);
+    color: var(--ivory);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .inquire p {
+    color: var(--ivory-dim);
+    max-width: 560px;
+    margin: 0 auto 50px;
+    font-size: 15px;
+  }
+  .inquire-grid {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    text-align: left;
+  }
+  .inquire-grid .field {
+    border-top: 1px solid rgba(212,178,106,0.3);
+    padding-top: 16px;
+  }
+  .inquire-grid .label {
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .inquire-grid .val {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ivory);
+  }
+  .inquire-cta {
+    margin-top: 60px;
+    display: inline-block;
+    padding: 18px 44px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .inquire-cta:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  /* ------------ FOOTER ------------ */
+  footer {
+    padding: 100px 6vw 40px;
+    background: var(--bg);
+    border-top: 1px solid rgba(212,178,106,0.18);
+  }
+  .footer-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-size: clamp(48px, 11vw, 180px);
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 70px;
+    overflow: hidden;
+  }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+    border-top: 1px solid rgba(212,178,106,0.2);
+  }
+  .footer-cols h4 {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .footer-cols a, .footer-cols div {
+    display: block;
+    color: var(--ivory);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 0;
+  }
+  .footer-cols a:hover { color: var(--gold); }
+  .footer-base {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(212,178,106,0.2);
+    display: flex;
+    justify-content: space-between;
+    color: var(--ivory-dim);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  /* ------------ RESPONSIVE ------------ */
+  @media (max-width: 900px) {
+    nav.top { padding: 14px 20px; }
+    nav.top .links { gap: 16px; font-size: 9px; }
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+    }
+    .hero-text {
+      order: 2;
+      padding: 60px 24px 70px;
+      min-height: auto;
+    }
+    .hero-image {
+      order: 1;
+      height: 70vh;
+      min-height: 460px;
+    }
+    .hero-image img { min-height: 70vh; height: 100%; }
+    .hero-image::after {
+      background: linear-gradient(to bottom, rgba(14,11,8,0) 50%, rgba(14,11,8,0.85) 100%);
+    }
+    .wordmark { font-size: clamp(64px, 19vw, 130px); }
+    .headliner { padding: 90px 24px 80px; }
+    .services { padding: 80px 24px; }
+    .service-grid { grid-template-columns: 1fr; }
+    .engagements { padding: 90px 24px; }
+    .engagement-list { columns: 1; }
+    .engagement-list li { font-size: 18px; }
+    .pullquote { padding: 100px 24px; }
+    .inquire { padding: 90px 24px; }
+    .inquire-grid { grid-template-columns: 1fr; gap: 18px; }
+    .footer-cols { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-base { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .wordmark { font-size: 76px; }
+    .footer-cols { grid-template-columns: 1fr; }
+  }
+
+  @media (min-width: 1600px) {
+    .wordmark { font-size: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <a href="#" class="mono">✦</a>
+  <div class="links">
+    <a href="#reel">Reel</a>
+    <a href="#repertoire">Repertoire</a>
+    <a href="#inquire">Inquire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Private Events <span class="dot">·</span> Since 2014</div>
+    <h1 class="wordmark">Sulli<span class="row2">van</span></h1>
+    <p class="hero-tagline">The host who brings the room together.</p>
+    <a href="#inquire" class="hero-cta">Inquire <span>→</span></a>
+  </div>
+  <div class="hero-image">
+    <img src="../assets/instagram/ig_01.jpeg" alt="Chris Sullivan" class="tonal-hero" />
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Private Events <span class="star">✦</span></span>
+    <span>Corporate Galas <span class="star">✦</span></span>
+    <span>Weddings <span class="star">✦</span></span>
+    <span>Estates <span class="star">✦</span></span>
+    <span>Charity <span class="star">✦</span></span>
+    <span>Private Events <span class="star">✦</span></span>
+    <span>Corporate Galas <span class="star">✦</span></span>
+    <span>Weddings <span class="star">✦</span></span>
+    <span>Estates <span class="star">✦</span></span>
+    <span>Charity <span class="star">✦</span></span>
+    <span>Private Events <span class="star">✦</span></span>
+    <span>Corporate Galas <span class="star">✦</span></span>
+    <span>Weddings <span class="star">✦</span></span>
+    <span>Estates <span class="star">✦</span></span>
+    <span>Charity <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- HEADLINER -->
+<section class="headliner">
+  <div class="section-eyebrow">— The Headliner —</div>
+  <h2>There are entertainers.<br/>And there is <span class="gold">a host.</span></h2>
+  <p class="body">Sullivan Fantastic is a live act — a room-filler built for listening rooms, side-stages, private evenings, and the occasional black-tie gala. Blues, soul, storytelling. Theatrical instincts, serious chops. One voice carrying the night. No costume piece, no karaoke, no press-play-and-pray. A live act that reads the room and responds — and leaves the guests talking long after the last glass is cleared.</p>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="repertoire">
+  <h2 class="services-title">The <span class="it">Repertoire</span></h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="num">i.</div>
+      <h3>Private<br/>Events</h3>
+      <p>Estate weekends, milestone birthdays, anniversary dinners, and after-hours soirées. Solo, trio, or full seven-piece — the program scales to the room. Reads the guests, then plays the room.</p>
+      <a href="#inquire" class="link">Inquire →</a>
+    </div>
+    <div class="service-card">
+      <div class="num">ii.</div>
+      <h3>Corporate<br/>Galas</h3>
+      <p>Black-tie evenings, brand activations, and executive retreats. A curated set built around the audience and the cause. Bookers receive a full stage plot and technical rider on request.</p>
+      <a href="#inquire" class="link">Inquire →</a>
+    </div>
+    <div class="service-card">
+      <div class="num">iii.</div>
+      <h3>Weddings &amp;<br/>Celebrations</h3>
+      <p>From ceremony to last dance — ballads, blues, and the room-filling moments in between. The Jackson Set available for themed evenings and reverent tribute moments by request.</p>
+      <a href="#inquire" class="link">Inquire →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="engagements" id="reel">
+  <div class="section-eyebrow">— Selected Engagements —</div>
+  <h2>Notable Rooms</h2>
+  <p class="sub">A representative selection. Many evenings — by request — go unlisted.</p>
+  <ul class="engagement-list">
+    <li><span class="yr">'24</span>Private Estate Weekend in Aspen, Colorado</li>
+    <li><span class="yr">'24</span>Charity Gala for the Houston Children's Foundation</li>
+    <li><span class="yr">'24</span>Wedding at The Greenbrier, West Virginia</li>
+    <li><span class="yr">'23</span>Black-Tie Anniversary at the Beverly Hills Hotel</li>
+    <li><span class="yr">'23</span>Corporate Retreat for a Fortune 100 Partnership</li>
+    <li><span class="yr">'23</span>Milestone Birthday Aboard a Yacht in Saint-Tropez</li>
+    <li><span class="yr">'23</span>Foundation Benefit at Cipriani 25 Broadway</li>
+    <li><span class="yr">'22</span>Private Vineyard Dinner, Napa Valley</li>
+    <li><span class="yr">'22</span>Holiday Soirée at a Manhattan Private Residence</li>
+    <li><span class="yr">'22</span>Annual Gala for a Southern Arts Council</li>
+    <li><span class="yr">'21</span>Wedding Reception, Lake Como, Italy</li>
+    <li><span class="yr">'21</span>Listening Room Series, Nashville &amp; Austin</li>
+  </ul>
+</section>
+
+<!-- EDITORIAL SPREAD -->
+<section class="spread">
+  <img src="../assets/instagram/ig_03.jpeg" alt="On stage" class="spread-img tonal" />
+  <div class="caption">— A voice that moves. A band that follows it. —</div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <div class="quote">
+    <q>A live act that reads the house and responds. By the second song, the room belonged to him — and to itself.</q>
+  </div>
+  <div class="attribution">— Foundation Chair · Private Gala, 2024</div>
+</section>
+
+<!-- SECONDARY EDITORIAL -->
+<section class="spread">
+  <img src="../assets/tiktok/tt_05_7593231926006123831.jpeg" alt="The room" class="spread-img tonal" style="object-position: center 22%;" />
+  <div class="caption">— The host who brings the room together. —</div>
+</section>
+
+<!-- INQUIRE -->
+<section class="inquire" id="inquire">
+  <div class="section-eyebrow">— Correspondence —</div>
+  <h2>Begin the conversation.</h2>
+  <p>Inquiries route directly to Chris. Replies on serious rooms inside forty-eight hours. A real date, a real venue, a rough idea of the evening.</p>
+  <div class="inquire-grid">
+    <div class="field">
+      <div class="label">Direct Line</div>
+      <div class="val">concierge@sullivanfantastic.com</div>
+    </div>
+    <div class="field">
+      <div class="label">By Appointment</div>
+      <div class="val">+1 (000) 000 — 0000</div>
+    </div>
+    <div class="field">
+      <div class="label">Reply Window</div>
+      <div class="val">Forty-eight hours, serious rooms.</div>
+    </div>
+    <div class="field">
+      <div class="label">Geography</div>
+      <div class="val">Based in the US · Touring worldwide on request.</div>
+    </div>
+  </div>
+  <a href="#inquire" class="inquire-cta">Send The Inquiry →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wordmark">Sullivan&nbsp;Fantastic</div>
+  <div class="footer-cols">
+    <div>
+      <h4>The Act</h4>
+      <a href="#repertoire">Repertoire</a>
+      <a href="#reel">The Reel</a>
+      <a href="#">Press Kit</a>
+      <a href="#">Stage Plot</a>
+    </div>
+    <div>
+      <h4>The Programs</h4>
+      <a href="#">Sullivan Fantastic</a>
+      <a href="#">The Jackson Set</a>
+      <a href="#">Solo · Trio · Band</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
+    </div>
+    <div>
+      <h4>Correspondence</h4>
+      <a href="#inquire">Begin Conversation</a>
+      <div>concierge@<br/>sullivanfantastic.com</div>
+    </div>
+  </div>
+  <div class="footer-base">
+    <div>Sullivan Fantastic · Est. 2014</div>
+    <div>— A Night, A Room, A Voice —</div>
+  </div>
+</footer>
+
+</body>
+</html>

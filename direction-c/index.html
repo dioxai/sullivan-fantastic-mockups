@@ -79,8 +79,16 @@
 
   /* ===== Hero (curtain reveal) ===== */
   .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--hairline)}
+  .hero-video{position:absolute;inset:0;overflow:hidden;z-index:0}
+  .hero-video iframe{display:block}
+  .hero-video::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:
+      linear-gradient(180deg, rgba(15,30,26,.55) 0%, rgba(15,30,26,.15) 35%, rgba(15,30,26,.85) 90%, var(--forest) 100%),
+      linear-gradient(90deg, rgba(15,30,26,.65) 0%, transparent 45%, transparent 70%, rgba(59,15,15,.35) 100%);
+  }
   .hero-photo{
-    position:absolute;inset:0;background-size:cover;background-position:center 30%;
+    position:absolute;inset:0;background-size:cover;background-position:center 20%;
     background-image:url('../assets/instagram/ig_01.jpeg');
     filter:saturate(.85) contrast(1.05) brightness(.78);
     transform:scale(1.06);
@@ -218,7 +226,7 @@
   .trio-grid{display:grid;grid-template-columns:1.2fr 1fr 1.1fr;gap:18px;margin-top:56px}
   @media (max-width:880px){.trio-grid{grid-template-columns:1fr}}
   .moment{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--hairline)}
-  .moment img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05) brightness(.85);transition:transform 1.2s ease, filter .8s}
+  .moment img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:saturate(.85) contrast(1.05) brightness(.85);transition:transform 1.2s ease, filter .8s}
   .moment:hover img{transform:scale(1.04);filter:saturate(1) contrast(1.05) brightness(.95)}
   .moment .cap{
     position:absolute;left:22px;bottom:20px;right:22px;
@@ -234,7 +242,7 @@
   .who p{font-family:'Fraunces',serif;font-weight:300;font-size:22px;line-height:1.6;color:var(--cream);margin-bottom:1em}
   .who p em{font-style:italic;color:var(--brass-2)}
   .who-portrait{
-    aspect-ratio:4/5;background-size:cover;background-position:center;
+    aspect-ratio:4/5;background-size:cover;background-position:center 20%;
     background-image:url('../assets/instagram/ig_10.jpeg');
     border:1px solid var(--hairline);
     filter:saturate(.85) contrast(1.05) brightness(.88);
@@ -247,16 +255,29 @@
 
   /* ===== How It Works ===== */
   .how{background:var(--forest-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:64px;border-top:1px solid var(--hairline)}
-  @media (max-width:880px){.steps{grid-template-columns:1fr}}
-  .step{padding:52px 44px 52px 0;border-right:1px solid var(--hairline);position:relative}
-  .step:last-child{border-right:none}
-  @media (max-width:880px){.step{border-right:none;border-bottom:1px solid var(--hairline);padding:44px 0}}
-  .step .n{
-    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-    color:var(--brass-2);font-size:14px;letter-spacing:.04em;margin-bottom:24px;display:block;
+  .how.section, section.how{padding:140px 0}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:80px;margin-top:80px;position:relative}
+  @media (max-width:880px){.steps{grid-template-columns:1fr;gap:48px}}
+  .step{
+    padding:48px;
+    background:linear-gradient(160deg, rgba(237,229,211,.06), rgba(237,229,211,.02));
+    border:1px solid var(--hairline);
+    border-radius:4px;
+    backdrop-filter:blur(18px) saturate(120%);
+    -webkit-backdrop-filter:blur(18px) saturate(120%);
+    position:relative;
   }
-  .step h3{font-family:'Fraunces',serif;font-weight:300;font-size:32px;line-height:1.05;color:var(--cream);margin-bottom:18px;letter-spacing:-.01em}
+  .step + .step::before{
+    content:"";position:absolute;left:-40px;top:20%;bottom:20%;width:1px;
+    background:linear-gradient(180deg, transparent, var(--brass-3), transparent);
+    opacity:.6;
+  }
+  @media (max-width:880px){.step + .step::before{left:20%;right:20%;top:-24px;bottom:auto;width:auto;height:1px;background:linear-gradient(90deg, transparent, var(--brass-3), transparent)}}
+  .step .n{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    color:var(--brass-2);font-size:22px;letter-spacing:.02em;margin-bottom:28px;display:block;
+  }
+  .step h3{font-family:'Fraunces',serif;font-weight:300;font-size:32px;line-height:1.1;color:var(--cream);margin-bottom:18px;letter-spacing:-.01em}
   .step h3 em{font-style:italic;color:var(--brass-2)}
   .step p{font-family:'Fraunces',serif;font-weight:300;font-size:16px;line-height:1.6;color:var(--cream-mute)}
 
@@ -337,7 +358,9 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-photo" role="img" aria-label="Chris Sullivan, warm-lit, mid-performance"></div>
+  <div class="hero-video" aria-hidden="true">
+    <iframe src="https://www.youtube-nocookie.com/embed/BnHRQAGb42M?autoplay=1&mute=1&loop=1&playlist=BnHRQAGb42M&controls=0&modestbranding=1&playsinline=1&showinfo=0" allow="autoplay; encrypted-media" frameborder="0" style="position:absolute;top:50%;left:50%;width:177.77vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);pointer-events:none;"></iframe>
+  </div>
   <span class="curtain left" aria-hidden="true"></span>
   <span class="curtain right" aria-hidden="true"></span>
   <div class="wrap hero-inner">
@@ -405,15 +428,15 @@
     <h2>A few <em>nights</em>, lately.</h2>
     <div class="trio-grid">
       <figure class="moment">
-        <img src="../assets/instagram/ig_05.jpeg" alt="A toast, mid-room" />
+        <img src="../assets/instagram/ig_05.jpeg" alt="A toast, mid-room" style="object-fit:cover; object-position:center 20%;" />
         <figcaption class="cap"><span>Mid-Toast</span>The room exhaled, then leaned back in.</figcaption>
       </figure>
       <figure class="moment">
-        <img src="../assets/instagram/ig_03.jpeg" alt="On the water, after sundown" />
+        <img src="../assets/instagram/ig_03.jpeg" alt="On the water, after sundown" style="object-fit:cover; object-position:center 20%;" />
         <figcaption class="cap"><span>On the Water</span>A boat, a chorus, the city behind us.</figcaption>
       </figure>
       <figure class="moment">
-        <img src="../assets/instagram/ig_00.jpeg" alt="Backstage, before the open" />
+        <img src="../assets/instagram/ig_00.jpeg" alt="Backstage, before the open" style="object-fit:cover; object-position:center 20%;" />
         <figcaption class="cap"><span>Before the Open</span>The quiet minute that makes the rest of the night.</figcaption>
       </figure>
     </div>

@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sullivan Fantastic — The Reel, Volume MMXXVI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0B1530;
+    --navy-deep:#070E22;
+    --gold:#E8C97A;
+    --gold-soft:#C9AC5E;
+    --ivory:#F4EFE5;
+    --ivory-dim:rgba(244,239,229,0.72);
+    --ivory-faint:rgba(244,239,229,0.42);
+    --rule:rgba(232,201,122,0.22);
+    --ox:#7C2C2C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--navy);color:var(--ivory);font-family:'Inter',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;line-height:1.6}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  /* ============ Nav ============ */
+  .nav{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:32px 48px;gap:32px;
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-side{display:flex;gap:36px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ivory-dim)}
+  .nav-side.left{justify-content:flex-start}
+  .nav-side.right{justify-content:flex-end}
+  .nav-side a{position:relative;padding-bottom:4px;transition:color .3s}
+  .nav-side a:hover{color:var(--gold)}
+  .wordmark{
+    font-family:'Playfair Display',serif;font-weight:400;
+    letter-spacing:.34em;font-size:15px;text-align:center;
+    color:var(--ivory);text-transform:uppercase;white-space:nowrap;
+  }
+  .wordmark .amp{color:var(--gold);font-style:italic;display:inline-block;margin:0 6px;font-weight:400}
+
+  /* ============ Reel section ============ */
+  .reel-wrap{
+    padding:96px 48px 72px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;
+  }
+  .eyebrow .dot{opacity:.55;margin:0 10px}
+  .reel-headline{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+    font-size:clamp(38px,6.2vw,68px);line-height:1.08;
+    margin:28px auto 0;max-width:18ch;color:var(--ivory);
+    letter-spacing:-0.01em;
+  }
+  .reel-rule{
+    width:48px;height:1px;background:var(--gold);opacity:.7;
+    margin:36px auto 0;
+  }
+
+  .video-frame{
+    margin:56px auto 0;
+    max-width:1100px;width:100%;
+    position:relative;
+    padding:14px;
+    background:linear-gradient(180deg,rgba(232,201,122,0.10),rgba(232,201,122,0.03));
+    border:1px solid var(--gold-soft);
+    border-radius:2px;
+    box-shadow:0 40px 120px -40px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(232,201,122,0.10);
+  }
+  .video-frame::before,
+  .video-frame::after{
+    content:'';position:absolute;width:14px;height:14px;border:1px solid var(--gold);
+  }
+  .video-frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .video-frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+  .video-corner-tr,.video-corner-bl{
+    position:absolute;width:14px;height:14px;border:1px solid var(--gold);
+  }
+  .video-corner-tr{top:-1px;right:-1px;border-left:none;border-bottom:none}
+  .video-corner-bl{bottom:-1px;left:-1px;border-right:none;border-top:none}
+
+  .video-tile{
+    position:relative;aspect-ratio:16/9;width:100%;
+    background:#000;overflow:hidden;
+  }
+  .video-tile iframe{
+    position:absolute;inset:0;width:100%;height:100%;border:0;
+  }
+
+  /* Carousel chevrons */
+  .chev{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    color:var(--gold);opacity:.55;cursor:pointer;font-size:22px;
+    transition:opacity .3s;
+    font-family:'Playfair Display',serif;
+  }
+  .chev:hover{opacity:1}
+  .chev.prev{left:-64px}
+  .chev.next{right:-64px}
+  @media (max-width:1200px){
+    .chev.prev{left:-8px}
+    .chev.next{right:-8px}
+  }
+
+  .reel-dots{
+    display:flex;justify-content:center;gap:14px;margin-top:32px;
+  }
+  .reel-dots span{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--ivory-faint);transition:all .3s;
+  }
+  .reel-dots span.is-active{background:var(--gold);transform:scale(1.4)}
+
+  .caption{
+    margin-top:22px;font-family:'Playfair Display',serif;font-style:italic;
+    color:var(--gold);font-size:14px;letter-spacing:.04em;
+  }
+  .caption .sep{opacity:.55;margin:0 8px}
+
+  /* ============ Repertoire ============ */
+  .repertoire{
+    padding:140px 48px 120px;max-width:1280px;margin:0 auto;
+  }
+  .rep-head{text-align:center;margin-bottom:84px}
+  .rep-head h2{
+    font-family:'Playfair Display',serif;font-weight:400;font-style:italic;
+    font-size:clamp(30px,3.6vw,44px);margin-top:18px;color:var(--ivory);
+    letter-spacing:-0.01em;
+  }
+  .rep-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:64px;
+  }
+  .rep-col{
+    text-align:center;padding:0 12px;
+    position:relative;
+  }
+  .rep-col + .rep-col::before{
+    content:'';position:absolute;left:-32px;top:8%;bottom:8%;width:1px;
+    background:var(--rule);
+  }
+  .rep-num{
+    font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
+    font-size:14px;margin-bottom:18px;letter-spacing:.05em;
+  }
+  .rep-col h3{
+    font-family:'Playfair Display',serif;font-weight:400;
+    font-size:26px;color:var(--ivory);margin-bottom:18px;letter-spacing:.01em;
+  }
+  .rep-col p{
+    font-size:13.5px;color:var(--ivory-dim);max-width:30ch;margin:0 auto;
+    line-height:1.7;
+  }
+  .rep-eye{
+    display:block;font-size:10px;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;font-weight:500;
+  }
+
+  /* ============ Photo strip ============ */
+  .strip-wrap{
+    padding:60px 0 100px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:var(--navy-deep);
+  }
+  .strip-head{
+    text-align:center;padding:0 48px 48px;
+  }
+  .strip-head .eyebrow{margin-bottom:10px}
+  .strip-head h3{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+    font-size:clamp(24px,2.6vw,32px);color:var(--ivory);
+  }
+  .photo-strip{
+    display:flex;gap:18px;overflow-x:auto;
+    padding:20px 48px 28px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;scrollbar-color:var(--gold-soft) transparent;
+  }
+  .photo-strip::-webkit-scrollbar{height:6px}
+  .photo-strip::-webkit-scrollbar-thumb{background:var(--gold-soft);border-radius:3px}
+  .photo-strip figure{
+    flex:0 0 auto;width:320px;scroll-snap-align:start;
+    position:relative;
+  }
+  .photo-strip .frame{
+    width:100%;aspect-ratio:3/4;overflow:hidden;
+    border:1px solid rgba(232,201,122,0.2);
+    background:#000;
+  }
+  .photo-strip img{
+    width:100%;height:100%;
+    object-fit:cover;object-position:center 25%;
+    filter:saturate(.88) contrast(1.02);
+    transition:transform 1.2s ease;
+  }
+  .photo-strip figure:hover img{transform:scale(1.03)}
+  .photo-strip figcaption{
+    margin-top:14px;font-size:10px;letter-spacing:.36em;
+    text-transform:uppercase;color:var(--ivory-dim);text-align:center;
+  }
+  .photo-strip figcaption .num{color:var(--gold);margin-right:8px;font-family:'Playfair Display',serif;font-style:italic;letter-spacing:0}
+
+  /* ============ Pull quote ============ */
+  .pullquote{
+    padding:140px 48px;text-align:center;max-width:980px;margin:0 auto;
+  }
+  .pullquote .mark{
+    font-family:'Playfair Display',serif;font-style:italic;
+    color:var(--ox);font-size:64px;line-height:1;display:block;margin-bottom:24px;
+  }
+  .pullquote blockquote{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+    color:var(--ox);
+    font-size:clamp(28px,3.4vw,42px);line-height:1.25;
+    letter-spacing:-0.005em;
+  }
+  .pullquote cite{
+    display:block;margin-top:36px;font-style:normal;
+    font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--ivory-dim);
+  }
+  .pullquote cite .sep{color:var(--gold);margin:0 10px}
+
+  /* ============ Inquire ============ */
+  .inquire{
+    text-align:center;padding:40px 48px 160px;
+    border-top:1px solid var(--rule);
+  }
+  .inquire .avatar{
+    width:84px;height:84px;border-radius:50%;
+    margin:0 auto 28px;
+    border:1px solid var(--gold-soft);
+    padding:4px;
+    background:var(--navy-deep);
+  }
+  .inquire .avatar img{
+    width:100%;height:100%;border-radius:50%;
+    object-fit:cover;object-position:center 25%;
+  }
+  .inquire h2{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+    font-size:clamp(34px,4.6vw,56px);color:var(--ivory);margin:8px 0 18px;
+    letter-spacing:-0.01em;
+  }
+  .inquire p{
+    color:var(--ivory-dim);max-width:54ch;margin:0 auto 44px;font-size:15px;
+  }
+  .cta{
+    display:inline-block;padding:18px 44px;
+    border:1px solid var(--gold);color:var(--gold);
+    font-size:11px;letter-spacing:.38em;text-transform:uppercase;
+    transition:all .35s ease;background:transparent;
+    font-family:'Inter',sans-serif;
+  }
+  .cta:hover{background:var(--gold);color:var(--navy)}
+  .inquire-meta{
+    margin-top:48px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;
+    font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--ivory-faint);
+  }
+  .inquire-meta span b{display:block;color:var(--ivory);font-weight:400;margin-top:6px;letter-spacing:.2em}
+
+  /* ============ Footer ============ */
+  footer{
+    border-top:1px solid var(--rule);
+    padding:48px 48px 56px;
+    text-align:center;
+    background:var(--navy-deep);
+  }
+  footer .credits{
+    font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--ivory-faint);line-height:2.2;
+  }
+  footer .credits .sep{color:var(--gold);margin:0 12px}
+  footer .credits b{font-weight:400;color:var(--ivory-dim)}
+  footer .mark-foot{
+    font-family:'Playfair Display',serif;font-style:italic;
+    color:var(--gold);font-size:14px;margin-bottom:18px;
+  }
+  footer .legal{
+    margin-top:26px;font-size:9px;letter-spacing:.32em;color:var(--ivory-faint);
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width:900px){
+    .nav{grid-template-columns:auto 1fr;padding:22px 24px;gap:16px}
+    .nav-side.right{order:3;grid-column:1 / -1;justify-content:center;border-top:1px solid var(--rule);padding-top:16px;margin-top:6px}
+    .nav-side.left{justify-content:flex-start;gap:20px;font-size:10px}
+    .wordmark{font-size:13px;letter-spacing:.28em;text-align:right}
+    .reel-wrap{padding:64px 22px 56px}
+    .video-frame{padding:8px}
+    .repertoire{padding:88px 24px 72px}
+    .rep-grid{grid-template-columns:1fr;gap:56px}
+    .rep-col + .rep-col::before{display:none}
+    .strip-head{padding:0 22px 32px}
+    .photo-strip{padding:18px 22px 24px}
+    .photo-strip figure{width:230px}
+    .pullquote{padding:96px 24px}
+    .inquire{padding:32px 22px 110px}
+    .inquire-meta{gap:28px}
+    footer{padding:36px 22px}
+    .chev{display:none}
+  }
+  @media (max-width:480px){
+    .nav-side.left{gap:14px;font-size:9.5px;letter-spacing:.22em}
+    .wordmark{font-size:11px;letter-spacing:.24em}
+    .reel-headline{font-size:34px}
+    .photo-strip figure{width:200px}
+  }
+</style>
+</head>
+<body>
+
+<!-- =============== NAV =============== -->
+<nav class="nav" aria-label="Primary">
+  <div class="nav-side left">
+    <a href="#reel">The Reel</a>
+    <a href="#repertoire">Events</a>
+  </div>
+  <a href="#" class="wordmark">Sullivan <span class="amp">·</span> Fantastic</a>
+  <div class="nav-side right">
+    <a href="#inquire">Inquire</a>
+    <a href="#inquire">Press Kit</a>
+  </div>
+</nav>
+
+<!-- =============== REEL =============== -->
+<section class="reel-wrap" id="reel">
+  <p class="eyebrow">The Reel <span class="dot">·</span> Volume MMXXVI</p>
+  <h1 class="reel-headline">Watch the room come together.</h1>
+  <div class="reel-rule"></div>
+
+  <div class="video-frame">
+    <span class="video-corner-tr"></span>
+    <span class="video-corner-bl"></span>
+    <span class="chev prev" aria-hidden="true">‹</span>
+    <span class="chev next" aria-hidden="true">›</span>
+    <div class="video-tile">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/BnHRQAGb42M?autoplay=1&mute=1&loop=1&playlist=BnHRQAGb42M&controls=0&modestbranding=1&playsinline=1"
+        title="Sullivan Fantastic — The Reel"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        frameborder="0"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="reel-dots" aria-hidden="true">
+    <span class="is-active"></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <p class="caption">A signature performance <span class="sep">·</span> Private estate, 2024</p>
+</section>
+
+<!-- =============== REPERTOIRE =============== -->
+<section class="repertoire" id="repertoire">
+  <header class="rep-head">
+    <p class="eyebrow">The Repertoire <span class="dot">·</span> Three Rooms, One Voice</p>
+    <h2>Built for the room — engineered for the night.</h2>
+  </header>
+
+  <div class="rep-grid">
+    <article class="rep-col">
+      <div class="rep-num">i.</div>
+      <span class="rep-eye">Private Events</span>
+      <h3>Private Events</h3>
+      <p>Listening rooms, private evenings, milestone parties. Solo, trio, or full seven-piece — the program scales; the instincts don't.</p>
+    </article>
+    <article class="rep-col">
+      <div class="rep-num">ii.</div>
+      <span class="rep-eye">Corporate Galas</span>
+      <h3>Corporate Galas</h3>
+      <p>Black-tie evenings, brand activations, and the occasional after-dinner showpiece. A live act that reads the house and responds.</p>
+    </article>
+    <article class="rep-col">
+      <div class="rep-num">iii.</div>
+      <span class="rep-eye">Weddings</span>
+      <h3>Weddings</h3>
+      <p>First dances, ceremony moments, late-night sets. Theatrical instincts, serious chops — and a band that follows the voice.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =============== PHOTO STRIP =============== -->
+<section class="strip-wrap">
+  <div class="strip-head">
+    <p class="eyebrow">From The House <span class="dot">·</span> Selected Stills</p>
+    <h3>A night, a room, a voice.</h3>
+  </div>
+  <div class="photo-strip" role="list">
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/instagram/ig_03.jpeg" alt="The Arrival" /></div>
+      <figcaption><span class="num">01</span>The Arrival</figcaption>
+    </figure>
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/instagram/ig_06.jpeg" alt="Soundcheck" /></div>
+      <figcaption><span class="num">02</span>Soundcheck</figcaption>
+    </figure>
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/tiktok/tt_03_7625702353785670926.jpeg" alt="The Opener" /></div>
+      <figcaption><span class="num">03</span>The Opener</figcaption>
+    </figure>
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/instagram/ig_08.jpeg" alt="The Ballad" /></div>
+      <figcaption><span class="num">04</span>The Ballad</figcaption>
+    </figure>
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/tiktok/tt_07_7562659985281338679.jpeg" alt="Second Set" /></div>
+      <figcaption><span class="num">05</span>Second Set</figcaption>
+    </figure>
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/instagram/ig_10.jpeg" alt="The Room" /></div>
+      <figcaption><span class="num">06</span>The Room</figcaption>
+    </figure>
+    <figure role="listitem">
+      <div class="frame"><img src="../assets/tiktok/tt_01_7629067656905116941.jpeg" alt="The Encore" /></div>
+      <figcaption><span class="num">07</span>The Encore</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =============== PULL QUOTE (OXBLOOD) =============== -->
+<section class="pullquote">
+  <span class="mark">&ldquo;</span>
+  <blockquote>
+    A live act that reads the house and responds —<br />and leaves the guests still talking on Monday.
+  </blockquote>
+  <cite>The Patron <span class="sep">·</span> Private Estate, Hudson Valley <span class="sep">·</span> 2024</cite>
+</section>
+
+<!-- =============== INQUIRE =============== -->
+<section class="inquire" id="inquire">
+  <div class="avatar">
+    <img src="../assets/instagram/profile_avatar.jpeg" alt="Chris Sullivan" />
+  </div>
+  <p class="eyebrow">Correspondence <span class="dot">·</span> Direct Line</p>
+  <h2>Begin the conversation.</h2>
+  <p>A real date, a real venue, a rough idea of the night. Inquiries route directly to Chris — replies on serious rooms inside forty-eight hours.</p>
+  <a href="#inquire" class="cta">Begin the conversation →</a>
+
+  <div class="inquire-meta">
+    <span>By Mail<b>concierge@sullivanfantastic.com</b></span>
+    <span>By Line<b>+1 (000) 000 · 0000</b></span>
+    <span>By Appointment<b>Calendly · on request</b></span>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer>
+  <div class="mark-foot">Sullivan Fantastic</div>
+  <div class="credits">
+    Reel directed by <b>Bela's vision</b> <span class="sep">·</span>
+    Performance by <b>Chris Sullivan</b> <span class="sep">·</span>
+    Filmed on location, Private Estate <span class="sep">·</span>
+    Volume MMXXVI
+  </div>
+  <div class="legal">
+    Sullivan Fantastic <span style="color:var(--gold)">·</span> Est. 2026 <span style="color:var(--gold)">·</span> A night, a room, a voice
+  </div>
+</footer>
+
+<script>
+  // Decorative dot rotation — purely cosmetic, suggests a carousel of reels.
+  (function(){
+    var dots = document.querySelectorAll('.reel-dots span');
+    if(!dots.length) return;
+    var i = 0;
+    setInterval(function(){
+      dots.forEach(function(d){d.classList.remove('is-active')});
+      i = (i+1) % dots.length;
+      dots[i].classList.add('is-active');
+    }, 4200);
+  })();
+</script>
+</body>
+</html>

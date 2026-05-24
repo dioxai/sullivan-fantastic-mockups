@@ -3,50 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sullivan Fantastic — Design Directions for Chris's Review</title>
+<title>Sullivan Fantastic — 7 Design Directions for Chris's Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#0a0a0a;color:#f5f0e1;font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1280px;margin:0 auto;padding:64px 32px 96px}
-  header{text-align:center;margin-bottom:80px;border-bottom:1px solid rgba(212,175,55,.2);padding-bottom:64px}
+  .wrap{max-width:1320px;margin:0 auto;padding:64px 32px 96px}
+  header{text-align:center;margin-bottom:72px;border-bottom:1px solid rgba(212,175,55,.2);padding-bottom:56px}
   .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#d4af37;font-weight:500;margin-bottom:24px}
   h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5vw,72px);line-height:1.05;font-style:italic;margin-bottom:24px}
   h1 span{color:#d4af37;font-style:normal;font-weight:400}
-  header p{max-width:620px;margin:0 auto;color:rgba(245,240,225,.7);font-size:17px;line-height:1.7}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
-  @media(max-width:760px){.grid{grid-template-columns:1fr;gap:24px}.wrap{padding:48px 20px}}
+  header p{max-width:680px;margin:0 auto;color:rgba(245,240,225,.7);font-size:17px;line-height:1.7}
+  .group-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:rgba(212,175,55,.8);margin:48px 0 20px;text-align:center;letter-spacing:.02em}
+  .group-label::before,.group-label::after{content:" \2726 ";color:rgba(212,175,55,.3);font-style:normal;font-size:14px;vertical-align:middle}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr;gap:20px}.wrap{padding:48px 20px}}
   .card{background:#111;border:1px solid rgba(212,175,55,.15);border-radius:4px;overflow:hidden;transition:all .4s ease;text-decoration:none;color:inherit;display:flex;flex-direction:column}
   .card:hover{border-color:rgba(212,175,55,.5);transform:translateY(-4px)}
-  .card-img{aspect-ratio:16/10;background:#000;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:48px;color:rgba(212,175,55,.4);position:relative;overflow:hidden}
+  .card-img{aspect-ratio:16/10;background:#000;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:40px;color:rgba(212,175,55,.4);position:relative;overflow:hidden;text-align:center;padding:0 20px;line-height:1.1}
   .card-a .card-img{background:linear-gradient(135deg,#000,#1a1a1a)}
   .card-b .card-img{background:linear-gradient(135deg,#f8f4ec,#e8e0d0);color:rgba(91,26,26,.4)}
-  .card-c .card-img{background:linear-gradient(135deg,#0f1e1a,#3b0f0f);color:rgba(168,120,58,.5)}
-  .card-d .card-img{background:linear-gradient(135deg,#0a0a0a,#1a1a1a);color:#f5c518}
-  .card-d .card-img span{font-family:'Inter',sans-serif;font-weight:700;font-style:normal;letter-spacing:-.02em;text-shadow:0 0 40px rgba(245,197,24,.3)}
-  .card-body{padding:32px 28px}
-  .card-letter{display:inline-block;width:32px;height:32px;border:1px solid #d4af37;border-radius:50%;text-align:center;line-height:30px;font-size:13px;color:#d4af37;margin-bottom:16px;font-family:'Cormorant Garamond',serif}
-  .card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:32px;line-height:1.1;margin-bottom:12px}
-  .card .label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#d4af37;margin-bottom:14px;font-weight:500}
-  .card p{color:rgba(245,240,225,.65);font-size:14.5px;line-height:1.65;margin-bottom:20px}
-  .card .meta{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid rgba(212,175,55,.12);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,225,.45)}
+  .card-c .card-img{background:linear-gradient(135deg,#0f1e1a,#3b0f0f);color:rgba(168,120,58,.55)}
+  .card-d .card-img{background:linear-gradient(135deg,#0a0a0a,#1a1a1a);color:#f5c518;font-family:'Inter',sans-serif;font-weight:700;font-style:normal;letter-spacing:-.02em;text-shadow:0 0 40px rgba(245,197,24,.3)}
+  .card-e .card-img{background:linear-gradient(135deg,#0B1530,#152040);color:rgba(232,201,122,.55)}
+  .card-f .card-img{background:linear-gradient(135deg,#0E0B08,#704423);color:rgba(212,178,106,.55)}
+  .card-g .card-img{background:linear-gradient(135deg,#061320,#0A2540);color:rgba(240,211,137,.55)}
+  .card-body{padding:28px 24px}
+  .card-letter{display:inline-block;width:32px;height:32px;border:1px solid #d4af37;border-radius:50%;text-align:center;line-height:30px;font-size:13px;color:#d4af37;margin-bottom:14px;font-family:'Cormorant Garamond',serif}
+  .card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:28px;line-height:1.1;margin-bottom:10px}
+  .card .label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#d4af37;margin-bottom:12px;font-weight:500}
+  .card p{color:rgba(245,240,225,.65);font-size:14px;line-height:1.6;margin-bottom:18px}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid rgba(212,175,55,.12);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,225,.45)}
   .card .meta strong{color:#d4af37;font-weight:500}
+  .new-badge{display:inline-block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#0a0a0a;background:#d4af37;padding:3px 8px;border-radius:2px;margin-left:8px;font-weight:600;vertical-align:middle}
   .footer-note{margin-top:80px;text-align:center;padding-top:40px;border-top:1px solid rgba(212,175,55,.15);font-size:13px;color:rgba(245,240,225,.45)}
   .footer-note p{margin-bottom:8px}
-  .picker{margin-top:60px;background:#0d0d0d;border:1px solid rgba(212,175,55,.2);border-radius:4px;padding:40px;text-align:center}
-  .picker h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;margin-bottom:8px}
-  .picker p{color:rgba(245,240,225,.65);font-size:15px;margin-bottom:20px}
+  .picker{margin-top:56px;background:#0d0d0d;border:1px solid rgba(212,175,55,.2);border-radius:4px;padding:36px;text-align:center}
+  .picker h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;margin-bottom:8px}
+  .picker p{color:rgba(245,240,225,.65);font-size:14.5px;margin-bottom:0;max-width:700px;margin-left:auto;margin-right:auto}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Sullivan Fantastic · Design Exploration · Monday Review</div>
-    <h1>Four directions for <span>your next site.</span></h1>
-    <p>Each one is a complete visual world built from your existing voice — theatrical, refined, hosted. Real photos pulled from your Instagram and TikTok. Click any direction to explore. Pick one (or mix two) and we'll build it out.</p>
+    <div class="eyebrow">Sullivan Fantastic · Design Exploration · Round 2</div>
+    <h1>Seven directions for <span>your next site.</span></h1>
+    <p>Round 1 (A–D) shipped overnight. Round 2 (E–G) adds video-first directions inspired by Justin Bieber, Chris Brown's store, and Legendary.com — but kept entertainment-company luxury. Real photos from your Instagram + TikTok throughout. Direction C now embeds your actual promo video.</p>
   </header>
+
+  <div class="group-label">Round 1 — Typography &amp; Palette Studies</div>
 
   <div class="grid">
 
@@ -56,7 +63,7 @@
         <div class="card-letter">A</div>
         <div class="label">Black-Tie Cinematic</div>
         <h2>Hushed. Whispered. Bond opening.</h2>
-        <p>Pure black canvas. Champagne gold used like a rare ingredient. Cormorant Garamond italics at scale. Slow scroll reveals on full-bleed photography. The site equivalent of an unmarked door at the right address.</p>
+        <p>Pure black canvas. Champagne gold used like a rare ingredient. Cormorant Garamond italics at scale. The site equivalent of an unmarked door at the right address.</p>
         <div class="meta"><span>For: ultra-private clients</span><strong>OPEN →</strong></div>
       </div>
     </a>
@@ -67,7 +74,7 @@
         <div class="card-letter">B</div>
         <div class="label">Editorial Magazine</div>
         <h2>Vogue feature spread.</h2>
-        <p>Warm ivory. Oxblood pull quotes. Playfair Display at 168px. Drop caps. Volume / Issue masthead. He's the talent on the cover, not a vendor in a directory. Built for clients who read Robb Report.</p>
+        <p>Warm ivory. Oxblood pull quotes. Playfair Display at 168px. Drop caps. Volume / Issue masthead. He's the talent on the cover, not a vendor in a directory.</p>
         <div class="meta"><span>For: status &amp; storytelling</span><strong>OPEN →</strong></div>
       </div>
     </a>
@@ -76,9 +83,9 @@
       <div class="card-img">a personal<br><em style="color:#c99554">invitation.</em></div>
       <div class="card-body">
         <div class="card-letter">C</div>
-        <div class="label">Atelier Concierge</div>
+        <div class="label">Atelier Concierge <span class="new-badge">VIDEO + FIXES</span></div>
         <h2>Soho House meets jazz lounge.</h2>
-        <p>Forest green and oxblood. Brass type accents. Glass-morphism cards. Written in Chris's first person, signed at the bottom. Intimate, warm, and personal — the opposite of cold luxury. A members-only feel.</p>
+        <p>Forest green and oxblood. Brass type accents. Your actual promo video now embedded in the hero (replaces the static photo). "How It Works" spacing fixed. Glass-morphism cards.</p>
         <div class="meta"><span>For: relationship buyers</span><strong>OPEN →</strong></div>
       </div>
     </a>
@@ -89,8 +96,58 @@
         <div class="card-letter">D</div>
         <div class="label">Modern Maximalist</div>
         <h2>Built for the big room.</h2>
-        <p>Obsidian black + electric gold. 320px display type. Marquee tickers. Stat blocks (169K followers, etc.). Hover-glow cards. Sticky CTA. Closest to Collective Entertainment's energy. Loud, confident, modern — but still luxury.</p>
+        <p>Obsidian black + electric gold. 320px display type. Marquee tickers. Stat blocks. Hover-glow cards. Sticky CTA. Closest to Collective Entertainment's energy — but still luxury.</p>
         <div class="meta"><span>For: scale &amp; bookings</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="group-label">Round 2 — Video-First (NEW)</div>
+
+  <div class="grid">
+
+    <a class="card card-e" href="./direction-e/">
+      <div class="card-img">Watch the room<br><em style="color:#E8C97A">come together.</em></div>
+      <div class="card-body">
+        <div class="card-letter">E</div>
+        <div class="label">The Showreel <span class="new-badge">NEW</span></div>
+        <h2>Bieber-inspired centerpiece.</h2>
+        <p>Midnight navy + champagne. Your promo video sits in a contained 16:9 tile with generous negative space — like a gallery program. Reserved Playfair, gold caption beneath, photo strip below.</p>
+        <div class="meta"><span>For: gallery presentation</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+    <a class="card card-f" href="./direction-f/">
+      <div class="card-img">SULLIVAN</div>
+      <div class="card-body">
+        <div class="card-letter">F</div>
+        <div class="label">The Headliner <span class="new-badge">NEW</span></div>
+        <h2>Chris Brown-style monochrome.</h2>
+        <p>Tuxedo black + champagne + cognac, all one warm temperature. Your portrait full-bleed on the right two-thirds, SULLIVAN wordmark huge on the left. You're the headliner — your name is the story.</p>
+        <div class="meta"><span>For: name-recognition play</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+    <a class="card card-g" href="./direction-g/">
+      <div class="card-img">The reel of <em>a thousand</em><br>rooms.</div>
+      <div class="card-body">
+        <div class="card-letter">G</div>
+        <div class="label">The Marquee <span class="new-badge">NEW</span></div>
+        <h2>Legendary.com rotating reel.</h2>
+        <p>Deep navy + champagne. Three video slots cycle through the homepage hero (your promo + two TikTok stills). Cormorant italic name floats over the action. Movie-studio reel adapted to a luxury host.</p>
+        <div class="meta"><span>For: showcase energy</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+    <a class="card" style="background:#0d0d0d;border-style:dashed" href="#billing-decision">
+      <div class="card-img" style="background:#0d0d0d;color:rgba(212,175,55,.5);font-size:24px;font-family:'Inter',sans-serif;font-style:normal;font-weight:500;line-height:1.4">+ Awaiting<br>billing decision<br><span style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,225,.4)">For cinematic AI re-renders</span></div>
+      <div class="card-body">
+        <div class="card-letter">+</div>
+        <div class="label">Cinematic AI Pass</div>
+        <h2>The big upgrade.</h2>
+        <p>Enable billing on Google Cloud → I run Nano Banana Pro on every photo to put Chris in luxury ballroom settings with audiences in evening wear. ~$5 total budget. Details below.</p>
+        <div class="meta"><span id="billing-decision">For: your decision</span><strong>READ →</strong></div>
       </div>
     </a>
 
@@ -98,13 +155,13 @@
 
   <div class="picker">
     <h3>Pick one. Or mix.</h3>
-    <p>Chris can pick a single direction, or tell us "the typography from B with the palette from C." We'll build the chosen direction into a full production site (chatbot, CRM, booking, real domain) — same fast pipeline we use for Diox itself.</p>
+    <p>Send Chris the hub URL or just the directions you like — he picks one (or tells us "the typography from B with the palette from F"). We then build the chosen direction into a full production site (chatbot, CRM, booking, real domain) — same fast pipeline we use for Diox itself.</p>
   </div>
 
   <div class="footer-note">
     <p>Static design mockups · Not connected to sullivanfantastic.com · No mail routing live · Pricing intentionally hidden</p>
     <p style="margin-top:14px">Photography pulled from @sullivanfantastic and @chrissullivanofficial — Chris's actual work.</p>
-    <p style="margin-top:14px;color:rgba(212,175,55,.6);letter-spacing:.2em;text-transform:uppercase;font-size:10px">Built overnight by Diox · Linear DIO-32 · For review Monday</p>
+    <p style="margin-top:14px;color:rgba(212,175,55,.6);letter-spacing:.2em;text-transform:uppercase;font-size:10px">Built overnight by Diox · Linear DIO-32 + DIO-33 · For review Monday</p>
   </div>
 </div>
 </body>

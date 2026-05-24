@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sullivan Fantastic — The Marquee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#061320;
+    --navy-deep:#03090f;
+    --champagne:#F0D389;
+    --champagne-soft:#E8C77A;
+    --white:#FFFFFF;
+    --oxblood:#5B1A1A;
+    --muted:#8A95A3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;font-weight:300;line-height:1.55}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .italic{font-style:italic}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--champagne);font-weight:500}
+  .container{max-width:1320px;margin:0 auto;padding:0 32px}
+
+  /* ----------- NAV ----------- */
+  .nav{position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:28px 40px}
+  .nav .mark{font-family:'Cormorant Garamond',serif;color:var(--white);font-size:28px;letter-spacing:.05em}
+  .nav .mark span{color:var(--champagne);font-size:22px;margin-right:10px}
+  .nav ul{display:flex;gap:38px;list-style:none}
+  .nav a{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--white);position:relative;padding:6px 0}
+  .nav a:hover{color:var(--champagne)}
+
+  /* ----------- HERO ----------- */
+  .hero{position:relative;height:100vh;min-height:680px;width:100%;overflow:hidden;background:#000}
+  .slide{position:absolute;inset:0;opacity:0;animation:cycle 18s infinite;will-change:opacity}
+  .slide:nth-child(1){animation-delay:0s}
+  .slide:nth-child(2){animation-delay:6s}
+  .slide:nth-child(3){animation-delay:12s}
+  @keyframes cycle{
+    0%   {opacity:0}
+    3%   {opacity:1}
+    33%  {opacity:1}
+    36%  {opacity:0}
+    100% {opacity:0}
+  }
+  .slide iframe,.slide img{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;object-position:center 20%}
+  .slide iframe{transform:scale(1.5);transform-origin:center center;pointer-events:none}
+  .hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(6,19,32,0.65));z-index:5}
+  .hero-vignette{position:absolute;inset:0;box-shadow:inset 0 -180px 200px -40px rgba(6,19,32,0.95), inset 0 120px 160px -40px rgba(6,19,32,0.55);z-index:6;pointer-events:none}
+  .hero-inner{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 24px}
+  .hero-eyebrow{margin-bottom:28px;color:var(--champagne)}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(64px,11vw,148px);line-height:.92;letter-spacing:-.01em;color:var(--white);text-shadow:0 4px 40px rgba(0,0,0,.6)}
+  .hero .tag{margin-top:26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2vw,24px);color:var(--champagne);letter-spacing:.04em}
+  .hero .pill{margin-top:42px;display:inline-flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.7);padding:14px 28px;border-radius:999px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--white);transition:.25s}
+  .hero .pill:hover{background:var(--white);color:var(--navy);border-color:var(--white)}
+  .hero .dots{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);display:flex;gap:14px;z-index:11}
+  .hero .dots span{width:30px;height:2px;background:rgba(255,255,255,.25);display:block;animation:dot 18s infinite}
+  .hero .dots span:nth-child(1){animation-delay:0s}
+  .hero .dots span:nth-child(2){animation-delay:6s}
+  .hero .dots span:nth-child(3){animation-delay:12s}
+  @keyframes dot{0%,33%{background:var(--champagne)}34%,100%{background:rgba(255,255,255,.25)}}
+  .hero-corner{position:absolute;bottom:42px;left:40px;z-index:11;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .hero-corner-r{position:absolute;bottom:42px;right:40px;z-index:11;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+  /* ----------- INTRO ----------- */
+  section{padding:120px 0}
+  .intro{text-align:center;padding:140px 24px 110px}
+  .intro .eyebrow{margin-bottom:30px}
+  .intro p{max-width:680px;margin:0 auto;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,2.6vw,32px);line-height:1.45;color:rgba(255,255,255,.86);font-style:italic}
+  .intro p em{color:var(--champagne);font-style:italic}
+  .rule{display:block;width:60px;height:1px;background:var(--champagne);margin:46px auto 0}
+
+  /* ----------- SECTION HEADERS ----------- */
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(240,211,137,.18);padding-bottom:22px;margin-bottom:60px}
+  .sec-head h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-style:italic;font-size:clamp(44px,6vw,84px);line-height:.95;letter-spacing:-.01em}
+  .sec-head h2 .sm{font-style:normal;color:var(--champagne);font-size:.45em;letter-spacing:.3em;display:block;text-transform:uppercase;margin-bottom:14px;font-family:'Inter',sans-serif;font-weight:500}
+  .sec-head .meta{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);text-align:right;padding-bottom:10px}
+
+  /* ----------- ENGAGEMENTS ----------- */
+  .engagements{background:var(--navy)}
+  .scroll-row{display:grid;grid-auto-flow:column;grid-auto-columns:360px;gap:28px;overflow-x:auto;padding:8px 32px 30px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--champagne) transparent;margin:0 -32px}
+  .scroll-row::-webkit-scrollbar{height:6px}
+  .scroll-row::-webkit-scrollbar-thumb{background:rgba(240,211,137,.4);border-radius:3px}
+  .card{scroll-snap-align:start}
+  .card .frame{position:relative;height:480px;overflow:hidden;background:#000}
+  .card .frame img{width:100%;height:100%;object-fit:cover;object-position:center 25%;transition:.6s ease}
+  .card:hover .frame img{transform:scale(1.04)}
+  .card .num{position:absolute;top:18px;left:20px;color:var(--champagne);font-size:11px;letter-spacing:.3em;z-index:2;font-family:'Inter';font-weight:500}
+  .card .cap{padding:22px 4px 4px}
+  .card .cap h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:26px;color:var(--white);margin-bottom:6px}
+  .card .cap p{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* ----------- SERVICES ----------- */
+  .services{background:var(--navy-deep);border-top:1px solid rgba(240,211,137,.12)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .svc{background:linear-gradient(180deg,#0a1a2c,#050d18);border:1px solid rgba(240,211,137,.12);padding:48px 38px 44px;position:relative;min-height:420px;display:flex;flex-direction:column}
+  .svc .gl{color:var(--champagne);font-family:'Cormorant Garamond',serif;font-size:34px;margin-bottom:32px}
+  .svc h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:34px;line-height:1.05;margin-bottom:18px;color:var(--white)}
+  .svc .sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne);margin-bottom:22px}
+  .svc p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:22px;flex:1}
+  .svc ul{list-style:none;border-top:1px solid rgba(240,211,137,.15);padding-top:18px}
+  .svc li{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65);padding:6px 0;display:flex;justify-content:space-between}
+  .svc li span{color:var(--champagne)}
+
+  /* ----------- ABOUT ----------- */
+  .about{background:var(--navy)}
+  .about-grid{display:grid;grid-template-columns:0.95fr 1.1fr;gap:80px;align-items:center}
+  .about .portrait{position:relative;aspect-ratio:4/5;overflow:hidden}
+  .about .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+  .about .portrait::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(6,19,32,.5)}
+  .about .badge{position:absolute;top:24px;left:24px;color:var(--champagne);font-size:10px;letter-spacing:.3em;text-transform:uppercase;z-index:2}
+  .about h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-style:italic;font-size:clamp(46px,5.5vw,82px);line-height:1;margin-bottom:30px}
+  .about .lead{font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:var(--champagne);margin-bottom:26px;line-height:1.4}
+  .about p{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:18px;max-width:560px}
+  .about .signoff{margin-top:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;color:var(--white)}
+
+  /* ----------- PULL QUOTE ----------- */
+  .pullquote{background:var(--navy-deep);padding:160px 24px;text-align:center;position:relative;border-top:1px solid rgba(240,211,137,.12);border-bottom:1px solid rgba(240,211,137,.12)}
+  .pullquote::before{content:"“";position:absolute;top:60px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:200px;color:var(--oxblood);line-height:.6;opacity:.55}
+  .pullquote blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1.15;max-width:980px;margin:0 auto;color:var(--white)}
+  .pullquote cite{display:block;margin-top:36px;font-style:normal;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
+
+  /* ----------- 3 ACTS ----------- */
+  .acts{background:var(--navy)}
+  .acts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:20px}
+  .act{padding:70px 48px;background:linear-gradient(180deg,#091b30,#040b15);border:1px solid rgba(240,211,137,.14);position:relative;min-height:520px;display:flex;flex-direction:column;justify-content:space-between}
+  .act .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:140px;color:var(--champagne);line-height:.8;margin-bottom:60px}
+  .act h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:42px;margin-bottom:24px;color:var(--white)}
+  .act .label{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--champagne);margin-bottom:14px}
+  .act p{font-size:14px;line-height:1.75;color:rgba(255,255,255,.72);margin-top:auto}
+
+  /* ----------- INQUIRE ----------- */
+  .inquire{background:var(--navy-deep);padding:140px 0 160px}
+  .inquire-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:90px;align-items:start}
+  .inquire h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:clamp(50px,6vw,92px);line-height:.95;margin-bottom:30px}
+  .inquire .lead{color:rgba(255,255,255,.75);font-size:15px;max-width:420px;margin-bottom:34px;line-height:1.75}
+  .inquire .contact{border-top:1px solid rgba(240,211,137,.22);padding-top:24px;display:flex;flex-direction:column;gap:14px}
+  .inquire .contact div{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  .inquire .contact span:first-child{color:var(--champagne)}
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px}
+  .form .full{grid-column:1/-1}
+  .field{display:flex;flex-direction:column;gap:10px}
+  .field label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
+  .field input,.field select,.field textarea{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);padding:12px 0 10px;color:var(--white);font-family:'Inter';font-size:14px;outline:none;transition:.2s}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--champagne)}
+  .field textarea{resize:vertical;min-height:90px}
+  .submit{grid-column:1/-1;margin-top:14px;display:flex;justify-content:flex-end}
+  .submit button{background:var(--champagne);color:var(--navy);border:none;padding:18px 40px;font-family:'Inter';font-weight:600;font-size:11px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:.25s}
+  .submit button:hover{background:var(--white)}
+
+  /* ----------- FOOTER ----------- */
+  footer{background:var(--navy-deep);padding:80px 32px 36px;border-top:1px solid rgba(240,211,137,.18);overflow:hidden}
+  .wordmark{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:clamp(72px,16vw,260px);letter-spacing:-.02em;line-height:.85;color:var(--white);text-align:center;white-space:nowrap;overflow:hidden}
+  .wordmark span{color:var(--oxblood)}
+  .footer-bar{margin-top:40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(240,211,137,.18);padding-top:26px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);flex-wrap:wrap;gap:18px}
+  .footer-bar a{margin:0 14px;color:var(--muted)}
+  .footer-bar a:hover{color:var(--champagne)}
+
+  /* ----------- RESPONSIVE ----------- */
+  @media (max-width: 980px){
+    .nav{padding:22px}
+    .nav ul{gap:18px}
+    .nav a{font-size:10px;letter-spacing:.22em}
+    .svc-grid,.acts-grid{grid-template-columns:1fr;gap:18px}
+    .about-grid,.inquire-grid{grid-template-columns:1fr;gap:48px}
+    section{padding:80px 0}
+    .form{grid-template-columns:1fr}
+    .act{padding:50px 32px;min-height:auto}
+    .act .num{font-size:96px;margin-bottom:36px}
+    .hero-corner,.hero-corner-r{display:none}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:14px}
+    .sec-head .meta{text-align:left}
+  }
+  @media (max-width: 520px){
+    .nav .mark{font-size:22px}
+    .nav ul{display:none}
+    .hero{min-height:560px}
+    .scroll-row{grid-auto-columns:78vw}
+    .card .frame{height:380px}
+    .pullquote{padding:100px 20px}
+    .intro{padding:90px 20px 70px}
+    .container{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="mark" href="#"><span>✦</span>SULLIVAN FANTASTIC</a>
+  <ul>
+    <li><a href="#reel">The Reel</a></li>
+    <li><a href="#engagements">Engagements</a></li>
+    <li><a href="#inquire">Inquire</a></li>
+  </ul>
+</nav>
+
+<!-- HERO CAROUSEL -->
+<header class="hero" id="reel">
+  <div class="slide">
+    <iframe src="https://www.youtube-nocookie.com/embed/BnHRQAGb42M?autoplay=1&mute=1&loop=1&playlist=BnHRQAGb42M&controls=0&modestbranding=1&playsinline=1&showinfo=0&rel=0&disablekb=1&fs=0&iv_load_policy=3" allow="autoplay; encrypted-media" frameborder="0" tabindex="-1"></iframe>
+  </div>
+  <div class="slide">
+    <img src="../assets/tiktok/tt_05_7593231926006123831.jpeg" alt="Sullivan on stage" style="object-fit:cover;object-position:center 20%">
+  </div>
+  <div class="slide">
+    <img src="../assets/tiktok/tt_10_7542943010560937229.jpeg" alt="Sullivan performing" style="object-fit:cover;object-position:center 20%">
+  </div>
+
+  <div class="hero-grad"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-inner">
+    <div class="eyebrow hero-eyebrow">✦ &nbsp; Now appearing &nbsp; ✦</div>
+    <h1 class="serif italic">Sullivan&nbsp;Fantastic</h1>
+    <div class="tag">The reel of a thousand rooms.</div>
+    <a class="pill" href="#engagements">Watch the reel &nbsp;→</a>
+  </div>
+
+  <div class="hero-corner">EST. 2026 — A LIVE ACT</div>
+  <div class="hero-corner-r">REEL № 001 / III</div>
+
+  <div class="dots"><span></span><span></span><span></span></div>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="eyebrow">— Prologue —</div>
+  <p>A live act, engineered for a live house. Blues, soul, storytelling — a voice that moves from a whisper to the back wall, and a band that follows it. <em>The room is already warm.</em></p>
+  <span class="rule"></span>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="engagements" id="engagements">
+  <div class="container">
+    <div class="sec-head">
+      <h2><span class="sm">II · The Engagements</span>Rooms <em>we've filled.</em></h2>
+      <div class="meta">Selected · 2024 — 2026<br>Scroll →</div>
+    </div>
+  </div>
+
+  <div class="scroll-row" style="padding-left:max(32px,calc((100vw - 1320px)/2 + 32px))">
+    <div class="card">
+      <div class="frame">
+        <span class="num">№ 01</span>
+        <img src="../assets/instagram/ig_01.jpeg" alt="">
+      </div>
+      <div class="cap"><h3>A Black-Tie Gala</h3><p>Private estate · Manhattan</p></div>
+    </div>
+    <div class="card">
+      <div class="frame">
+        <span class="num">№ 02</span>
+        <img src="../assets/instagram/ig_03.jpeg" alt="">
+      </div>
+      <div class="cap"><h3>The Jackson Set</h3><p>Corporate · Beverly Hills</p></div>
+    </div>
+    <div class="card">
+      <div class="frame">
+        <span class="num">№ 03</span>
+        <img src="../assets/tiktok/tt_03_7625702353785670926.jpeg" alt="">
+      </div>
+      <div class="cap"><h3>A Listening Room</h3><p>Soho · Three nights</p></div>
+    </div>
+    <div class="card">
+      <div class="frame">
+        <span class="num">№ 04</span>
+        <img src="../assets/instagram/ig_07.jpeg" alt="">
+      </div>
+      <div class="cap"><h3>A Milestone Wedding</h3><p>Côte d'Azur</p></div>
+    </div>
+    <div class="card">
+      <div class="frame">
+        <span class="num">№ 05</span>
+        <img src="../assets/tiktok/tt_07_7562659985281338679.jpeg" alt="">
+      </div>
+      <div class="cap"><h3>Festival Side-Stage</h3><p>Newport · Closing night</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="sec-head">
+      <h2><span class="sm">III · The Bill</span>Two programs. <em>One showman.</em></h2>
+      <div class="meta">Solo · Trio · Seven-Piece</div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <div class="gl">✦</div>
+        <div class="sub">Program One · Original</div>
+        <h3>Sullivan Fantastic</h3>
+        <p>An evening of original work. Blues, soul, theatrical storytelling — a room-filler built for listening rooms, private events, and festival side-stages. Dynamic range from a whisper to the back wall.</p>
+        <ul>
+          <li>Duration <span>60 — 90 min</span></li>
+          <li>Format <span>Solo / Trio / Band</span></li>
+          <li>Audience <span>40 — 1,200</span></li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="gl">◆</div>
+        <div class="sub">Program Two · Tribute</div>
+        <h3>The Jackson Set</h3>
+        <p>A reverent, performed-live tribute to the Jackson catalog. Built for corporate galas, black-tie events, and themed evenings. Full-band or stripped configurations — the program scales, the instincts don't.</p>
+        <ul>
+          <li>Duration <span>45 — 75 min</span></li>
+          <li>Format <span>Trio / Full Band</span></li>
+          <li>Audience <span>100 — 3,000</span></li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="gl">✺</div>
+        <div class="sub">Bespoke · By Request</div>
+        <h3>The Private Evening</h3>
+        <p>A curated set composed around your room and your moment. First dances, milestone toasts, yacht-deck closers, estate cocktail-hours. We listen first, then build the bill. Replies on serious rooms inside 48 hours.</p>
+        <ul>
+          <li>Duration <span>By design</span></li>
+          <li>Format <span>Any configuration</span></li>
+          <li>Audience <span>20 — open</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="portrait">
+        <span class="badge">— Behind the marquee —</span>
+        <img src="../assets/instagram/ig_05.jpeg" alt="Chris Sullivan">
+      </div>
+      <div>
+        <span class="eyebrow">— Act IV · The Host —</span>
+        <h2 class="serif italic" style="margin-top:18px">A man.<br>A microphone.<br>A full house.</h2>
+        <p class="lead">Chris Sullivan is a singer, storyteller, and live act — equally at home on a listening-room stage and inside a black-tie ballroom.</p>
+        <p>Trained on blues and soul and raised on theatre, he reads a room the way a conductor reads a score — adjusting tempo, register, and silence in real time. There are no backing tracks, no costume pieces, no press-play-and-pray. Just a voice that moves, a band that follows it, and an evening guests will still be talking about over coffee the next morning.</p>
+        <p>Based in the United States. Touring worldwide on request. Inquiries route directly to Chris; replies on serious rooms inside 48 hours.</p>
+        <div class="signoff">— Yours, <em>Sullivan</em>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <blockquote>A live act that reads the house — and responds. He didn't just play our gala. He <em>hosted</em> it.</blockquote>
+  <cite>— A planner · Private event, Montecito</cite>
+</section>
+
+<!-- 3 ACTS -->
+<section class="acts">
+  <div class="container">
+    <div class="sec-head">
+      <h2><span class="sm">V · The Three Acts</span>How an <em>evening</em> is built.</h2>
+      <div class="meta">From inquiry → curtain</div>
+    </div>
+    <div class="acts-grid">
+      <div class="act">
+        <div>
+          <div class="num">I.</div>
+          <div class="label">— Act One —</div>
+          <h3>We Talk.</h3>
+        </div>
+        <p>One call. Twenty minutes. The room, the guests, the moment you're building toward. We listen for the things that don't make it onto a rider — the first dance, the donor's favorite ballad, the silence before the toast. The brief is yours.</p>
+      </div>
+      <div class="act">
+        <div>
+          <div class="num">II.</div>
+          <div class="label">— Act Two —</div>
+          <h3>We Design.</h3>
+        </div>
+        <p>A bespoke setlist, a configuration that fits your space (solo, trio, full seven-piece), and a technical plot built around your venue — not a generic one stapled to it. You see the program before it's locked. Nothing is a surprise but the music.</p>
+      </div>
+      <div class="act">
+        <div>
+          <div class="num">III.</div>
+          <div class="label">— Act Three —</div>
+          <h3>The Curtain Rises.</h3>
+        </div>
+        <p>We arrive early, soundcheck quietly, and step on at the moment you asked us to. Then we read the house and respond — accelerating, lingering, holding the silences. You host. We carry the room. The guests leave talking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRE -->
+<section class="inquire" id="inquire">
+  <div class="container">
+    <div class="inquire-grid">
+      <div>
+        <span class="eyebrow">— Correspondence —</span>
+        <h2 class="serif italic" style="margin-top:20px">Book the room.<br><em>We'll fill it.</em></h2>
+        <p class="lead">A real date, a real venue, and a rough idea of the evening. Inquiries route directly to Chris — replies on serious rooms inside 48 hours.</p>
+        <div class="contact">
+          <div><span>Booking</span><span>booking@sullivanfantastic.com</span></div>
+          <div><span>Press</span><span>press@sullivanfantastic.com</span></div>
+          <div><span>Direct</span><span>+1 (000) 000 — 0000</span></div>
+          <div><span>Reach</span><span>US-based · Worldwide</span></div>
+        </div>
+      </div>
+
+      <form class="form" onsubmit="event.preventDefault();this.querySelector('button').textContent='SENT — REPLY IN 48 HOURS'">
+        <div class="field"><label>Your name</label><input type="text" placeholder="Forename Surname"></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="you@domain.com"></div>
+        <div class="field full"><label>Organization / Venue / Agency</label><input type="text" placeholder="The Pierre, William Morris, A Private Host…"></div>
+        <div class="field"><label>Program</label>
+          <select><option>Sullivan Fantastic</option><option>The Jackson Set</option><option>The Private Evening</option><option>Either — discuss</option></select>
+        </div>
+        <div class="field"><label>Target date</label><input type="text" placeholder="14 February 2027"></div>
+        <div class="field"><label>City</label><input type="text" placeholder="New York"></div>
+        <div class="field"><label>Audience size</label><input type="text" placeholder="120 seated"></div>
+        <div class="field full"><label>Notes for Chris</label><textarea placeholder="The brief, the room, the moment…"></textarea></div>
+        <div class="submit"><button type="submit">Send the inquiry &nbsp;→</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wordmark">Sullivan&nbsp;<span>·</span>&nbsp;Fantastic</div>
+  <div class="footer-bar">
+    <div>© SULLIVAN FANTASTIC · EST. 2026</div>
+    <div>
+      <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a><a href="#">Spotify</a><a href="#">Apple Music</a>
+    </div>
+    <div>— A NIGHT · A ROOM · A VOICE —</div>
+  </div>
+</footer>
+
+</body>
+</html>
