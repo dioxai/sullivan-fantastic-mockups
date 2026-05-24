@@ -1,0 +1,5 @@
+# Direction D — Modern Maximalist
+
+**Vibe.** The loudest of the four. Obsidian-on-electric-gold, 200px display type, marquees and gradients in motion — a confident, contemporary entertainment-agency aesthetic in the lineage of Collective Entertainment, but with the dial turned up. Sullivan isn't introduced; he's *announced*. Every section hits like a stage cue: huge wordmarks, hover-glow cards, a single oxblood moment for emphasis, and a sticky "BOOK CHRIS →" bar that never lets the visitor forget why they're here. It still reads luxury (restraint in palette, generous white-on-black space, hidden pricing), but it trades the editorial whisper for a stadium voice.
+
+**Ideal client.** Corporate event producers, top-tier wedding planners, hotel-group F&B directors, and brand-activation agencies booking flagship galas, product launches, and milestone weddings ($75K–$500K+ entertainment line items). They've already vetted three names and want the *obvious* hire — the talent whose social proof, follower count, and stage presence close the pitch deck for them. Sullivan as headliner, not opener.

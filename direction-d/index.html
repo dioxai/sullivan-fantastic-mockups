@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sullivan Fantastic — Built for the Big Room</title>
+<meta name="description" content="Chris Sullivan — live entertainment for private events, corporate galas, weddings and estates. Built for the big room." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bowlby+One+SC&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ---------- Reset & root ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --obsidian: #0A0A0A;
+  --obsidian-2: #111;
+  --obsidian-3: #161616;
+  --gold: #F5C518;
+  --gold-dim: #d9ad11;
+  --white: #FFFFFF;
+  --oxblood: #7C2222;
+  --grey: #8a8a8a;
+  --grey-2: #2a2a2a;
+  --maxw: 1400px;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--obsidian);
+  color: var(--white);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 72px; /* space for sticky CTA bar */
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+.display { font-family: 'Anton', 'Bowlby One SC', Impact, sans-serif; font-weight: 400; line-height: .85; letter-spacing: .005em; text-transform: uppercase; }
+.bowlby { font-family: 'Bowlby One SC', Impact, sans-serif; font-weight: 400; line-height: .9; text-transform: uppercase; }
+.eyebrow { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); }
+.label { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--grey); }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(10,10,10,.78);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 32px;
+  max-width: var(--maxw); margin: 0 auto;
+}
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand-mark { color: var(--gold); font-size: 22px; line-height: 1; transform: translateY(2px); }
+.brand-text { font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: .05em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.7); transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--gold); color: var(--obsidian);
+  padding: 12px 22px; border-radius: 999px;
+  font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+  transition: transform .2s, background .2s;
+}
+.nav-cta:hover { background: var(--white); transform: translateY(-1px); }
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .nav-row { padding: 14px 20px; }
+  .brand-text { font-size: 18px; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 60px 0 40px;
+  overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 0%, rgba(245,197,24,.18), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245,197,24,.08), transparent 60%);
+  pointer-events: none;
+  animation: glow 14s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  0% { transform: translate3d(0,0,0); opacity: .9; }
+  100% { transform: translate3d(0,-20px,0); opacity: 1; }
+}
+.hero-inner { position: relative; z-index: 2; }
+.hero-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 30px;
+}
+.hero-top .label { color: var(--gold); }
+.hero-name {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(72px, 22vw, 320px);
+  line-height: .82;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fff 0%, #fff 55%, rgba(255,255,255,.4) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  margin: 8px 0;
+}
+.hero-name .accent { color: var(--gold); -webkit-text-fill-color: var(--gold); }
+.hero-tag {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  margin-top: 24px; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.hero-tag h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(28px, 5vw, 64px);
+  text-transform: uppercase;
+  line-height: .95;
+}
+.hero-tag h2 .gold { color: var(--gold); }
+.hero-tag .meta { font-size: 13px; color: var(--grey); max-width: 320px; text-align: right; }
+@media (max-width: 720px) {
+  .hero-tag { flex-direction: column; align-items: flex-start; }
+  .hero-tag .meta { text-align: left; max-width: 100%; }
+}
+
+/* Hero video poster */
+.hero-poster {
+  position: relative; margin-top: 50px;
+  aspect-ratio: 16/9;
+  border-radius: 6px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #1a1a1a;
+}
+.hero-poster img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(.7) contrast(1.05);
+  transition: transform 6s ease, filter .4s;
+}
+.hero-poster:hover img { transform: scale(1.04); filter: brightness(.78); }
+.hero-poster::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,.6) 100%);
+  pointer-events: none;
+}
+.play-btn {
+  position: absolute; inset: 0; margin: auto;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: var(--gold); color: var(--obsidian);
+  display: grid; place-items: center;
+  z-index: 2; transition: transform .25s, background .25s;
+  box-shadow: 0 0 0 0 rgba(245,197,24,.6);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(245,197,24,.55); }
+  100% { box-shadow: 0 0 0 32px rgba(245,197,24,0); }
+}
+.play-btn:hover { transform: scale(1.08); background: #fff; }
+.play-btn svg { width: 36px; height: 36px; margin-left: 6px; }
+.poster-caption {
+  position: absolute; bottom: 20px; left: 24px; right: 24px; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.85);
+}
+@media (max-width: 640px) {
+  .play-btn { width: 78px; height: 78px; }
+  .play-btn svg { width: 24px; height: 24px; }
+  .poster-caption { font-size: 10px; left: 16px; right: 16px; bottom: 14px; }
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  background: var(--gold); color: var(--obsidian);
+  padding: 22px 0; overflow: hidden; position: relative;
+  border-top: 1px solid #000; border-bottom: 1px solid #000;
+}
+.marquee-track {
+  display: flex; gap: 60px; white-space: nowrap;
+  animation: scroll 32s linear infinite;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(28px, 4.5vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+.marquee-track span { display: inline-flex; align-items: center; gap: 60px; }
+.marquee-track .star { color: var(--obsidian); opacity: .55; }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee.dark { background: var(--obsidian); color: var(--gold); border-color: var(--grey-2); }
+.marquee.dark .star { color: var(--gold); opacity: .35; }
+
+/* ---------- Stats ---------- */
+.stats {
+  padding: 120px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.stats-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+  margin-bottom: 70px; flex-wrap: wrap;
+}
+.stats-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(40px, 7vw, 96px);
+  text-transform: uppercase; line-height: .9;
+  max-width: 800px;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.stat {
+  padding: 50px 30px 40px;
+  border-right: 1px solid rgba(255,255,255,.12);
+  position: relative;
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(60px, 10vw, 140px);
+  line-height: .9; color: var(--gold);
+  letter-spacing: -.01em;
+}
+.stat-label {
+  margin-top: 12px; font-size: 11px; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--grey);
+}
+@media (max-width: 760px) {
+  .stats { padding: 70px 0; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); padding: 32px 0; }
+  .stat:last-child { border-bottom: none; }
+}
+
+/* ---------- Services ---------- */
+.services { padding: 120px 0; background: linear-gradient(180deg, var(--obsidian) 0%, #060606 100%); }
+.section-head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  margin-bottom: 60px; flex-wrap: wrap;
+}
+.section-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(40px, 7vw, 96px);
+  text-transform: uppercase; line-height: .9;
+}
+.section-head p { color: var(--grey); max-width: 380px; font-size: 15px; }
+.svc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.svc {
+  background: var(--obsidian-2);
+  padding: 44px 36px 36px;
+  min-height: 360px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+  transition: background .3s, transform .3s;
+}
+.svc::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 100%, rgba(245,197,24,.18), transparent 70%);
+  opacity: 0; transition: opacity .4s;
+}
+.svc:hover { background: #181818; transform: translateY(-4px); }
+.svc:hover::before { opacity: 1; }
+.svc-num { font-family: 'Anton', sans-serif; color: var(--gold); font-size: 14px; letter-spacing: .2em; }
+.svc h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  text-transform: uppercase; line-height: .9;
+  margin: 18px 0 14px;
+  position: relative; z-index: 1;
+}
+.svc p { color: rgba(255,255,255,.7); font-size: 14.5px; position: relative; z-index: 1; }
+.svc-tag {
+  margin-top: 24px; font-size: 11px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--gold); position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+@media (max-width: 900px) {
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc { min-height: auto; padding: 36px 28px; }
+}
+
+/* ---------- Portfolio gallery ---------- */
+.gallery { padding: 120px 0; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 10px;
+}
+.tile { position: relative; overflow: hidden; background: #1a1a1a; border-radius: 2px; }
+.tile img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .8s ease, filter .4s;
+  filter: brightness(.92) saturate(1.05);
+}
+.tile:hover img { transform: scale(1.08); filter: brightness(1.05); }
+.tile::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.7) 100%);
+  opacity: 0; transition: opacity .3s;
+}
+.tile:hover::after { opacity: 1; }
+.tile-cap {
+  position: absolute; bottom: 14px; left: 16px; right: 16px;
+  font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--white);
+  opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s;
+  z-index: 2;
+}
+.tile:hover .tile-cap { opacity: 1; transform: translateY(0); }
+.tile.tall { grid-row: span 2; }
+.tile.wide { grid-column: span 2; }
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .tile.wide { grid-column: span 2; }
+  .tile.tall { grid-row: span 1; }
+}
+
+/* ---------- Reel section (oxblood moment) ---------- */
+.reel {
+  background: var(--oxblood);
+  color: var(--white);
+  padding: 140px 0;
+  position: relative; overflow: hidden;
+}
+.reel::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(0,0,0,.35), transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,0,0,.5), transparent 70%);
+  pointer-events: none;
+}
+.reel-inner { position: relative; display: flex; align-items: center; gap: 60px; }
+.reel-text { flex: 1; min-width: 0; }
+.reel h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(56px, 11vw, 180px);
+  line-height: .85;
+  text-transform: uppercase;
+}
+.reel-text p {
+  margin-top: 24px; max-width: 480px;
+  font-size: 17px; line-height: 1.55;
+  color: rgba(255,255,255,.85);
+}
+.reel-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: 36px;
+  background: var(--white); color: var(--oxblood);
+  padding: 20px 32px; border-radius: 999px;
+  font-size: 13px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase;
+  transition: transform .25s, background .25s, color .25s;
+}
+.reel-btn:hover { background: var(--gold); color: var(--obsidian); transform: translateY(-2px); }
+.reel-thumb {
+  width: 320px; flex-shrink: 0; aspect-ratio: 9/16;
+  border-radius: 4px; overflow: hidden;
+  border: 2px solid rgba(255,255,255,.2);
+  position: relative;
+}
+.reel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 880px) {
+  .reel { padding: 80px 0; }
+  .reel-inner { flex-direction: column; gap: 36px; }
+  .reel-thumb { width: 100%; max-width: 320px; aspect-ratio: 9/16; }
+}
+
+/* ---------- Testimonials ---------- */
+.quotes { padding: 140px 0; }
+.quotes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px 60px; }
+.quote { border-top: 1px solid rgba(255,255,255,.15); padding-top: 30px; }
+.quote-mark { color: var(--gold); font-family: 'Anton', sans-serif; font-size: 80px; line-height: .5; margin-bottom: 8px; }
+.quote p {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.05; text-transform: uppercase;
+  color: var(--white);
+}
+.quote .who {
+  margin-top: 28px;
+  font-size: 11px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--grey);
+}
+@media (max-width: 800px) {
+  .quotes { padding: 80px 0; }
+  .quotes-grid { grid-template-columns: 1fr; gap: 50px; }
+}
+
+/* ---------- About strip ---------- */
+.about { padding: 120px 0; background: #060606; }
+.about-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+.about-img { aspect-ratio: 4/5; overflow: hidden; border-radius: 2px; background: #1a1a1a; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(.95); }
+.about-text h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(40px, 6vw, 88px);
+  text-transform: uppercase; line-height: .9;
+  margin-bottom: 28px;
+}
+.about-text h2 .gold { color: var(--gold); }
+.about-text p { color: rgba(255,255,255,.78); font-size: 16px; margin-bottom: 18px; max-width: 560px; }
+.about-meta { margin-top: 32px; display: flex; gap: 40px; flex-wrap: wrap; }
+.about-meta div { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--grey); }
+.about-meta div b { display: block; color: var(--gold); font-size: 13px; margin-bottom: 4px; font-weight: 800; }
+@media (max-width: 860px) {
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about { padding: 70px 0; }
+}
+
+/* ---------- Inquiry / contact ---------- */
+.inquire { padding: 140px 0; background: linear-gradient(180deg, #060606 0%, var(--obsidian) 100%); text-align: center; }
+.inquire h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(60px, 13vw, 220px);
+  text-transform: uppercase; line-height: .85;
+  background: linear-gradient(180deg, #fff 0%, var(--gold) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  animation: shift 8s ease-in-out infinite alternate;
+}
+@keyframes shift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(-8deg) brightness(1.08); }
+}
+.inquire p { margin: 30px auto 40px; max-width: 540px; color: rgba(255,255,255,.75); font-size: 16px; }
+.inquire .big-cta {
+  display: inline-flex; align-items: center; gap: 16px;
+  background: var(--gold); color: var(--obsidian);
+  padding: 26px 44px; border-radius: 999px;
+  font-size: 14px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase;
+  transition: transform .25s, background .25s;
+}
+.inquire .big-cta:hover { background: var(--white); transform: translateY(-2px) scale(1.02); }
+.inquire-meta { margin-top: 36px; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--grey); }
+
+/* ---------- Footer ---------- */
+.footer {
+  background: #050505;
+  padding: 100px 0 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 80px; }
+.footer-col h4 { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 800; }
+.footer-col a, .footer-col p { display: block; color: rgba(255,255,255,.7); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 0; transition: color .2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-blurb { color: rgba(255,255,255,.75); font-size: 14px; line-height: 1.55; text-transform: none; letter-spacing: 0; max-width: 300px; }
+.footer-wordmark {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(80px, 22vw, 360px);
+  line-height: .82; text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(245,197,24,.95) 0%, rgba(245,197,24,.05) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  padding: 0 0 30px;
+  letter-spacing: -.01em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.footer-base {
+  border-top: 1px solid rgba(255,255,255,.1);
+  display: flex; justify-content: space-between; align-items: center; gap: 18px;
+  padding: 28px 0; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--grey);
+  flex-wrap: wrap;
+}
+@media (max-width: 860px) {
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 30px; padding-bottom: 50px; }
+}
+
+/* ---------- Sticky bottom CTA ---------- */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+  background: var(--obsidian); color: var(--white);
+  border-top: 2px solid var(--gold);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 32px;
+  backdrop-filter: blur(10px);
+}
+.sticky-cta .text {
+  display: flex; align-items: baseline; gap: 16px;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(16px, 2.2vw, 24px);
+  text-transform: uppercase; letter-spacing: .03em;
+}
+.sticky-cta .text .gold { color: var(--gold); }
+.sticky-cta .pulse { color: var(--gold); animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.sticky-cta a.book {
+  background: var(--gold); color: var(--obsidian);
+  padding: 14px 26px; border-radius: 999px;
+  font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+.sticky-cta a.book:hover { background: var(--white); transform: translateX(2px); }
+@media (max-width: 640px) {
+  .sticky-cta { padding: 12px 16px; }
+  .sticky-cta .text .hidemb { display: none; }
+  .sticky-cta a.book { padding: 11px 18px; font-size: 11px; }
+}
+
+/* ---------- Scroll-fade-in (CSS only) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  section { animation: fade .9s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-row">
+    <a class="brand" href="#top">
+      <span class="brand-mark">✦</span>
+      <span class="brand-text">Sullivan Fantastic</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#reel">The Reel</a>
+      <a href="#about">About</a>
+      <a href="#book">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#book">Book Chris →</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-top">
+      <span class="label">✦ A Live Act · Est. 2026</span>
+      <span class="label">Houston · Touring Worldwide</span>
+    </div>
+
+    <h1 class="hero-name">
+      Sulli<span class="accent">van</span>
+    </h1>
+
+    <div class="hero-tag">
+      <h2>Built for the <span class="gold">big room.</span></h2>
+      <p class="meta">Live entertainment for private events, corporate galas, weddings, estates, and the kind of nights guests still talk about on Monday.</p>
+    </div>
+
+    <div class="hero-poster" id="reel-poster">
+      <img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oEksvykjJQ8uI56HETeAoDD6FbfCACN8WQPfhw~tplv-tiktokx-origin.image" alt="Chris Sullivan performing on the water" loading="lazy" />
+      <button class="play-btn" aria-label="Play reel">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+      </button>
+      <div class="poster-caption">
+        <span>✦ Watch · 02:14</span>
+        <span>Prom on the Lake · Fusion Academy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 1 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Private Events <span class="star">✦</span> Corporate <span class="star">✦</span> Weddings <span class="star">✦</span> Galas <span class="star">✦</span> Estates <span class="star">✦</span> Private Events <span class="star">✦</span> Corporate <span class="star">✦</span> Weddings <span class="star">✦</span> Galas <span class="star">✦</span> Estates <span class="star">✦</span></span>
+    <span>Private Events <span class="star">✦</span> Corporate <span class="star">✦</span> Weddings <span class="star">✦</span> Galas <span class="star">✦</span> Estates <span class="star">✦</span> Private Events <span class="star">✦</span> Corporate <span class="star">✦</span> Weddings <span class="star">✦</span> Galas <span class="star">✦</span> Estates <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-head">
+      <h2>The numbers don't whisper.</h2>
+      <span class="label">✦ Receipts</span>
+    </div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Events Performed [PLACEHOLDER]</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">Guests in the Room [PLACEHOLDER]</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">169K</div>
+        <div class="stat-label">TikTok Followers · 3.8M Likes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we book.</h2>
+      <p>Solo with track. Trio. Full seven-piece band. The program scales — the instincts don't. Pick the room; we'll fill it.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <div>
+          <div class="svc-num">01 / Programs</div>
+          <h3>Private<br/>Events</h3>
+          <p>Estates, milestone birthdays, mitzvahs, anniversaries. A live act engineered for the host who's seen everything and wants something the room actually remembers.</p>
+        </div>
+        <span class="svc-tag">Inquire ✦</span>
+      </div>
+      <div class="svc">
+        <div>
+          <div class="svc-num">02 / Programs</div>
+          <h3>Corporate<br/>& Galas</h3>
+          <p>Black-tie galas, brand activations, conference headliners, holiday parties. Blues, soul, theatrical storytelling — calibrated to a room with a program.</p>
+        </div>
+        <span class="svc-tag">Inquire ✦</span>
+      </div>
+      <div class="svc">
+        <div>
+          <div class="svc-num">03 / Programs</div>
+          <h3>Weddings<br/>& Receptions</h3>
+          <p>The first dance, the toast, the floor that doesn't empty. Ceremony to last-call — solo, trio, or full band. Destination work on request.</p>
+        </div>
+        <span class="svc-tag">Inquire ✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 2 (dark) -->
+<div class="marquee dark" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Book the room <span class="star">✦</span> We'll fill it <span class="star">✦</span> 48-hour reply on serious dates <span class="star">✦</span> Solo · Trio · Seven-piece band <span class="star">✦</span></span>
+    <span>Book the room <span class="star">✦</span> We'll fill it <span class="star">✦</span> 48-hour reply on serious dates <span class="star">✦</span> Solo · Trio · Seven-piece band <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section class="gallery" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The work.</h2>
+      <p>Selected nights from the last twelve months. Estates, ballrooms, decks, dance floors. <span style="color:var(--gold)">[PLACEHOLDER captions]</span></p>
+    </div>
+    <div class="gallery-grid">
+      <a class="tile tall" href="#">
+        <img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oouDFBvC9E5W8jqjIBH0EffNS24MpIAKpDiRgJ~tplv-tiktokx-origin.image" alt="San Antonio Military Academy">
+        <span class="tile-cap">✦ San Antonio Military Academy</span>
+      </a>
+      <a class="tile wide" href="#">
+        <img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oEksvykjJQ8uI56HETeAoDD6FbfCACN8WQPfhw~tplv-tiktokx-origin.image" alt="Prom on the lake">
+        <span class="tile-cap">✦ Prom on the Lake · Fusion Academy</span>
+      </a>
+      <a class="tile" href="#">
+        <img src="https://scontent-dfw5-2.cdninstagram.com/v/t51.71878-15/659907087_1326689099277139_6590608694654620379_n.jpg?stp=dst-jpg_e15_tt6&_nc_sid=8b3546" alt="Mazel tov Maddie">
+        <span class="tile-cap">✦ Mazel Tov, Maddie</span>
+      </a>
+      <a class="tile" href="#">
+        <img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oQVI2CUmpODOfBatBnFEgFD6E1ARHCaQQafMSp~tplv-tiktokx-origin.image" alt="Pouring into the youth">
+        <span class="tile-cap">✦ Pouring Into The Youth</span>
+      </a>
+      <a class="tile wide" href="#">
+        <img src="https://scontent-dfw5-1.cdninstagram.com/v/t15.5256-10/662003950_1467388421503439_9018375309745795727_n.jpg?stp=dst-jpg_e35_p640x640_sh2.08_tt6&_nc_sid=8b3546" alt="Kinkaid graduation">
+        <span class="tile-cap">✦ Kinkaid School · Graduation</span>
+      </a>
+      <a class="tile" href="#">
+        <img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oQCNAChoqLmeuIgEgTIGLeekgNpuAhHIHkiv7j~tplv-tiktokx-origin.image" alt="There's more than one way to love">
+        <span class="tile-cap">✦ More Than One Way</span>
+      </a>
+      <a class="tile" href="#">
+        <img src="https://scontent-dfw6-1.cdninstagram.com/v/t51.71878-15/658867694_1601160934471357_2059495017793746098_n.jpg?stp=dst-jpg_e15_tt6&_nc_sid=8b3546" alt="Alamo Heights">
+        <span class="tile-cap">✦ Alamo Heights</span>
+      </a>
+      <a class="tile tall" href="#">
+        <img src="https://p19-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/owBgOCBiMBFUgAaIADpYPInUvliBE9qPgHWl4~tplv-tiktokx-origin.image" alt="Less talking more becoming">
+        <span class="tile-cap">✦ Less Talking, More Becoming</span>
+      </a>
+      <a class="tile" href="#">
+        <img src="https://scontent-dfw5-1.cdninstagram.com/v/t39.30808-6/650250604_2187151158760475_2838428511133779093_n.jpg?stp=dst-jpg_e15_p640x640_tt6&_nc_sid=8b3546" alt="Tonight">
+        <span class="tile-cap">✦ Tonight</span>
+      </a>
+      <a class="tile" href="#">
+        <img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oAtiTD8RIp4CphqAIUrBPBwIYeAiBdgwUva0IN~tplv-tiktokx-origin.image" alt="2025 year recap">
+        <span class="tile-cap">✦ The 2025 Run</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- REEL MOMENT (oxblood) -->
+<section class="reel" id="reel">
+  <div class="wrap reel-inner">
+    <div class="reel-text">
+      <h2>Watch<br/>the reel.</h2>
+      <p>Ninety seconds. A cold open, a phrase that lands, a swell, a silence — then applause. The job, in motion. If the room watches this and doesn't pick up the phone, we weren't built for them.</p>
+      <a class="reel-btn" href="#book">▶ Press Play · 01:32</a>
+    </div>
+    <div class="reel-thumb">
+      <img src="https://p16-common-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/oo0PazBvbAGUvIRB9PEvA1J1ig48HtBb2UiWI~tplv-tiktokx-origin.image" alt="Sullivan reel thumbnail" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What the rooms say.</h2>
+      <span class="label">✦ Selected Notes</span>
+    </div>
+    <div class="quotes-grid">
+      <figure class="quote">
+        <div class="quote-mark">"</div>
+        <p>The dance floor never emptied. We've booked five-figure acts that didn't move the room like this.</p>
+        <figcaption class="who">— [PLACEHOLDER] · Event Planner, Houston</figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="quote-mark">"</div>
+        <p>Easiest hire of the year. He read the room before the first note and never let it down.</p>
+        <figcaption class="who">— [PLACEHOLDER] · Head of Hospitality</figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="quote-mark">"</div>
+        <p>Three weddings booked off one performance. Our guests still text me about him.</p>
+        <figcaption class="who">— [PLACEHOLDER] · Private Host, Dallas</figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="quote-mark">"</div>
+        <p>Built for the big room — and clearly used to it. Discreet, professional, and an absolute closer on stage.</p>
+        <figcaption class="who">— [PLACEHOLDER] · Brand Activation Director</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-inner">
+    <div class="about-img">
+      <img src="https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/b6cfbe2af5138945ca1a9990dbfa45fa~tplv-tiktokx-cropcenter:1080:1080.jpeg" alt="Chris Sullivan portrait" loading="lazy" />
+    </div>
+    <div class="about-text">
+      <span class="label">✦ The Headliner</span>
+      <h2>One voice.<br/><span class="gold">Every room.</span></h2>
+      <p>Sullivan Fantastic is a live act — a room-filler built for listening rooms, side-stages, private evenings, and the occasional black-tie gala. Blues, soul, storytelling. Theatrical instincts, serious chops.</p>
+      <p>Two programs on the bill. One voice carrying both. No costume piece, no karaoke, no press-play-and-pray. A live act that reads the room and responds — and leaves the guests talking.</p>
+      <div class="about-meta">
+        <div><b>Based</b>Houston, TX</div>
+        <div><b>Tours</b>Worldwide on request</div>
+        <div><b>Formats</b>Solo · Trio · 7-piece</div>
+        <div><b>Reply</b>48 hours, serious rooms</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 3 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Book Chris <span class="star">✦</span> 48-hour reply <span class="star">✦</span> By introduction <span class="star">✦</span> Select dates <span class="star">✦</span> Book Chris <span class="star">✦</span> 48-hour reply <span class="star">✦</span> By introduction <span class="star">✦</span> Select dates <span class="star">✦</span></span>
+    <span>Book Chris <span class="star">✦</span> 48-hour reply <span class="star">✦</span> By introduction <span class="star">✦</span> Select dates <span class="star">✦</span> Book Chris <span class="star">✦</span> 48-hour reply <span class="star">✦</span> By introduction <span class="star">✦</span> Select dates <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- INQUIRE -->
+<section class="inquire" id="book">
+  <div class="wrap">
+    <span class="label">✦ The Ask</span>
+    <h2>Book the<br/>big room.</h2>
+    <p>A real date, a real venue, a rough idea of the budget. Inquiries route directly to Chris. Replies on serious rooms inside 48 hours.</p>
+    <a class="big-cta" href="#book">Book Chris on Calendly →</a>
+    <div class="inquire-meta">booking@sullivanfantastic.com · [PHONE PLACEHOLDER] · @sullivanfantastic</div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>✦ Sullivan Fantastic</h4>
+        <p class="footer-blurb">A live act for the rooms that remember the night. Private events, corporate galas, weddings, estates. By introduction.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#reel">The Reel</a>
+        <a href="#about">About</a>
+        <a href="#book">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://www.tiktok.com/@chrissullivanofficial" target="_blank" rel="noopener">TikTok ↗</a>
+        <a href="https://www.instagram.com/sullivanfantastic/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="#">YouTube ↗</a>
+        <a href="#">Spotify ↗</a>
+      </div>
+      <div class="footer-col">
+        <h4>Book</h4>
+        <a href="#book">Calendly →</a>
+        <a href="#book">booking@sullivanfantastic.com</a>
+        <a href="#book">[PHONE PLACEHOLDER]</a>
+        <a href="#book">48-hour reply</a>
+      </div>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true">Sullivan Fantastic</div>
+    <div class="footer-base">
+      <span>© 2026 Sullivan Fantastic — A Live Act</span>
+      <span>✦ Built for the big room</span>
+      <span>Est. 2026 · Houston · Worldwide</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY BOTTOM CTA -->
+<div class="sticky-cta">
+  <div class="text">
+    <span class="pulse">●</span>
+    <span>Now booking <span class="gold">2026</span><span class="hidemb"> — select dates</span></span>
+  </div>
+  <a class="book" href="#book">Book Chris →</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sullivan Fantastic — Atelier of Events · By Appointment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0F1E1A;
+    --forest-2:#0A1613;
+    --forest-3:#142823;
+    --oxblood:#3B0F0F;
+    --oxblood-2:#5A1A1A;
+    --brass:#A8783A;
+    --brass-2:#C99554;
+    --brass-3:#7E5826;
+    --cream:#EDE5D3;
+    --cream-mute:rgba(237,229,211,.66);
+    --cream-faint:rgba(237,229,211,.32);
+    --hairline:rgba(168,120,58,.28);
+    --glass:rgba(237,229,211,.05);
+    --glass-strong:rgba(237,229,211,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--forest);color:var(--cream);font-family:'Inter',system-ui,sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  ::selection{background:var(--brass);color:var(--forest)}
+
+  /* Background grain + warm vignette */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(168,120,58,.10), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(59,15,15,.45), transparent 60%),
+      radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,.35) 100%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.06;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .93 0 0 0 0 .9 0 0 0 0 .83 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode:overlay;
+  }
+
+  .wrap{position:relative;z-index:3;max-width:1200px;margin:0 auto;padding:0 36px}
+
+  /* ===== Nav ===== */
+  nav.top{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    background:rgba(15,30,26,.66);
+    border-bottom:1px solid var(--hairline);
+  }
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .logo{display:flex;align-items:center;gap:14px}
+  .monogram{
+    width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--brass);
+    display:grid;place-items:center;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    color:var(--brass-2);font-size:18px;letter-spacing:.5px;
+    background:radial-gradient(circle at 30% 30%, rgba(201,149,84,.18), transparent 70%);
+  }
+  .wordmark{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--cream-mute);line-height:1.4}
+  .wordmark b{display:block;color:var(--cream);font-weight:500;letter-spacing:.28em}
+  .nav-links{display:flex;gap:38px;align-items:center}
+  .nav-links a{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-mute);transition:color .3s ease}
+  .nav-links a:hover{color:var(--brass-2)}
+  .nav-cta{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    color:var(--brass-2)!important;letter-spacing:.04em!important;text-transform:none!important;
+    font-size:16px!important;border-bottom:1px solid var(--brass-3);padding-bottom:2px;
+  }
+  @media (max-width:780px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ===== Hero (curtain reveal) ===== */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid var(--hairline)}
+  .hero-photo{
+    position:absolute;inset:0;background-size:cover;background-position:center 30%;
+    background-image:url('../assets/instagram/ig_01.jpeg');
+    filter:saturate(.85) contrast(1.05) brightness(.78);
+    transform:scale(1.06);
+    animation:slowzoom 18s ease-out forwards;
+  }
+  .hero-photo::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(15,30,26,.55) 0%, rgba(15,30,26,.15) 35%, rgba(15,30,26,.85) 90%, var(--forest) 100%),
+      linear-gradient(90deg, rgba(15,30,26,.65) 0%, transparent 45%, transparent 70%, rgba(59,15,15,.35) 100%);
+  }
+  @keyframes slowzoom{from{transform:scale(1.14)}to{transform:scale(1.02)}}
+
+  /* curtains */
+  .curtain{position:absolute;top:0;bottom:0;width:52%;z-index:5;pointer-events:none;
+    background:
+      linear-gradient(90deg, var(--oxblood) 0%, var(--oxblood-2) 45%, var(--oxblood) 100%);
+    box-shadow:inset 0 0 80px rgba(0,0,0,.55);
+  }
+  .curtain::before{
+    content:"";position:absolute;inset:0;opacity:.5;
+    background:repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 22px);
+  }
+  .curtain.left{left:0;transform-origin:left center;animation:curtainL 2.2s cubic-bezier(.7,.05,.2,1) .3s forwards}
+  .curtain.right{right:0;transform-origin:right center;animation:curtainR 2.2s cubic-bezier(.7,.05,.2,1) .3s forwards}
+  @keyframes curtainL{to{transform:translateX(-101%)}}
+  @keyframes curtainR{to{transform:translateX(101%)}}
+
+  .hero-inner{position:relative;z-index:4;padding:0 0 90px;width:100%;animation:fadeup 1.4s ease 1.6s both}
+  @keyframes fadeup{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:'Fraunces',serif;font-style:italic;color:var(--brass-2);
+    font-size:15px;font-weight:400;letter-spacing:.02em;
+  }
+  .eyebrow::before,.eyebrow::after{content:"";width:42px;height:1px;background:var(--brass-3)}
+  h1.hero-h{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(48px, 7.2vw, 84px);
+    line-height:1.02;letter-spacing:-.018em;
+    color:var(--cream);margin:22px 0 14px;max-width:14ch;
+  }
+  h1.hero-h em{font-style:italic;color:var(--brass-2);font-weight:400}
+  .hero-sub{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:22px;color:var(--cream-mute);max-width:38ch;line-height:1.4;
+  }
+  .hero-host{
+    margin-top:54px;display:flex;align-items:center;gap:18px;
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--cream-mute)
+  }
+  .hero-host .rule{flex:0 0 56px;height:1px;background:var(--brass-3)}
+
+  /* ===== Section base ===== */
+  section{position:relative;z-index:3;padding:140px 0}
+  .section-label{
+    font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--brass);
+    display:flex;align-items:center;gap:14px;margin-bottom:36px;
+  }
+  .section-label::before{content:"";width:34px;height:1px;background:var(--brass)}
+  h2{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(40px,5.4vw,68px);
+    line-height:1.04;letter-spacing:-.015em;color:var(--cream);
+  }
+  h2 em{font-style:italic;color:var(--brass-2);font-weight:400}
+  .lead{font-family:'Fraunces',serif;font-weight:300;font-size:24px;line-height:1.55;color:var(--cream);max-width:62ch}
+
+  /* ===== Letter ===== */
+  .letter{
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(168,120,58,.06), transparent 60%),
+      var(--forest-2);
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+  }
+  .letter-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+  @media (max-width:880px){.letter-grid{grid-template-columns:1fr;gap:48px}}
+  .letter h2{font-size:clamp(36px,4.4vw,56px)}
+  .letter p{font-family:'Fraunces',serif;font-weight:300;font-size:21px;line-height:1.7;color:var(--cream);margin-bottom:1.1em}
+  .letter p:first-of-type::first-letter{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:78px;float:left;line-height:.9;padding:8px 14px 0 0;color:var(--brass-2);
+  }
+  .signature{
+    margin-top:36px;display:flex;flex-direction:column;gap:6px;
+  }
+  .signature .name{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:48px;color:var(--brass-2);line-height:1;letter-spacing:-.01em;
+  }
+  .signature .role{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--cream-mute)}
+
+  /* ===== The Salon ===== */
+  .salon-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:64px;flex-wrap:wrap}
+  .salon-head .lead{max-width:48ch}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  @media (max-width:980px){.cards{grid-template-columns:1fr}}
+  .card{
+    position:relative;
+    padding:44px 36px 40px;
+    border-radius:4px;
+    background:linear-gradient(160deg, rgba(237,229,211,.08), rgba(237,229,211,.02));
+    border:1px solid var(--hairline);
+    backdrop-filter:blur(18px) saturate(120%);
+    -webkit-backdrop-filter:blur(18px) saturate(120%);
+    transition:transform .5s cubic-bezier(.2,.7,.2,1), border-color .5s, box-shadow .5s;
+    overflow:hidden;
+    min-height:440px;display:flex;flex-direction:column;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse at 100% 0%, rgba(168,120,58,.10), transparent 55%);
+    opacity:.7;
+  }
+  .card:hover{transform:translateY(-8px);border-color:rgba(168,120,58,.55);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .card .num{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    color:var(--brass-2);font-size:14px;letter-spacing:.04em;margin-bottom:24px;
+  }
+  .card h3{
+    font-family:'Fraunces',serif;font-weight:300;font-size:34px;line-height:1.05;color:var(--cream);
+    margin-bottom:18px;letter-spacing:-.01em;
+  }
+  .card h3 em{font-style:italic;color:var(--brass-2)}
+  .card p{font-family:'Fraunces',serif;font-weight:300;font-size:17px;line-height:1.65;color:var(--cream-mute)}
+  .card .foot{margin-top:auto;padding-top:32px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);display:flex;align-items:center;gap:10px}
+  .card .foot::after{content:"→";font-family:'Fraunces',serif;font-style:italic;font-size:14px;letter-spacing:0}
+
+  /* ===== Image trio ===== */
+  .trio{
+    background:var(--forest-2);
+    border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  }
+  .trio-grid{display:grid;grid-template-columns:1.2fr 1fr 1.1fr;gap:18px;margin-top:56px}
+  @media (max-width:880px){.trio-grid{grid-template-columns:1fr}}
+  .moment{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--hairline)}
+  .moment img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05) brightness(.85);transition:transform 1.2s ease, filter .8s}
+  .moment:hover img{transform:scale(1.04);filter:saturate(1) contrast(1.05) brightness(.95)}
+  .moment .cap{
+    position:absolute;left:22px;bottom:20px;right:22px;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    color:var(--cream);font-size:18px;line-height:1.3;
+    text-shadow:0 2px 14px rgba(0,0,0,.7);
+  }
+  .moment .cap span{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--brass-2);margin-bottom:6px}
+
+  /* ===== Who I Work With ===== */
+  .who-grid{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:center}
+  @media (max-width:880px){.who-grid{grid-template-columns:1fr;gap:48px}}
+  .who p{font-family:'Fraunces',serif;font-weight:300;font-size:22px;line-height:1.6;color:var(--cream);margin-bottom:1em}
+  .who p em{font-style:italic;color:var(--brass-2)}
+  .who-portrait{
+    aspect-ratio:4/5;background-size:cover;background-position:center;
+    background-image:url('../assets/instagram/ig_10.jpeg');
+    border:1px solid var(--hairline);
+    filter:saturate(.85) contrast(1.05) brightness(.88);
+    position:relative;
+  }
+  .who-portrait::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(15,30,26,.55) 100%);
+  }
+
+  /* ===== How It Works ===== */
+  .how{background:var(--forest-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:64px;border-top:1px solid var(--hairline)}
+  @media (max-width:880px){.steps{grid-template-columns:1fr}}
+  .step{padding:52px 44px 52px 0;border-right:1px solid var(--hairline);position:relative}
+  .step:last-child{border-right:none}
+  @media (max-width:880px){.step{border-right:none;border-bottom:1px solid var(--hairline);padding:44px 0}}
+  .step .n{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    color:var(--brass-2);font-size:14px;letter-spacing:.04em;margin-bottom:24px;display:block;
+  }
+  .step h3{font-family:'Fraunces',serif;font-weight:300;font-size:32px;line-height:1.05;color:var(--cream);margin-bottom:18px;letter-spacing:-.01em}
+  .step h3 em{font-style:italic;color:var(--brass-2)}
+  .step p{font-family:'Fraunces',serif;font-weight:300;font-size:16px;line-height:1.6;color:var(--cream-mute)}
+
+  /* ===== Concierge form ===== */
+  .concierge{
+    background:
+      radial-gradient(ellipse at 80% 100%, rgba(59,15,15,.45), transparent 65%),
+      var(--forest);
+  }
+  .form-card{
+    margin-top:56px;
+    padding:64px 56px;
+    border-radius:4px;
+    background:linear-gradient(160deg, rgba(237,229,211,.07), rgba(237,229,211,.02));
+    border:1px solid var(--hairline);
+    backdrop-filter:blur(20px) saturate(120%);
+    -webkit-backdrop-filter:blur(20px) saturate(120%);
+    max-width:780px;
+  }
+  @media (max-width:680px){.form-card{padding:40px 28px}}
+  .form-card .note{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:18px;color:var(--cream-mute);margin-bottom:36px;line-height:1.5;
+  }
+  .field{margin-bottom:32px;position:relative}
+  .field label{display:block;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+  .field input,.field textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--hairline);
+    color:var(--cream);font-family:'Fraunces',serif;font-weight:300;font-size:20px;
+    padding:8px 0 14px;outline:none;transition:border-color .3s;
+  }
+  .field textarea{min-height:120px;resize:vertical;line-height:1.5}
+  .field input:focus,.field textarea:focus{border-color:var(--brass)}
+  .field input::placeholder,.field textarea::placeholder{color:var(--cream-faint);font-style:italic}
+  .begin{
+    margin-top:18px;display:inline-flex;align-items:center;gap:18px;
+    padding:18px 38px;background:transparent;border:1px solid var(--brass);
+    color:var(--brass-2);font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:18px;
+    letter-spacing:.02em;cursor:pointer;transition:all .35s ease;
+  }
+  .begin:hover{background:var(--brass);color:var(--forest)}
+  .begin::after{content:"→";font-size:16px;transition:transform .3s}
+  .begin:hover::after{transform:translateX(4px)}
+
+  /* ===== Footer ===== */
+  footer{
+    border-top:1px solid var(--hairline);
+    padding:80px 0 60px;
+    background:var(--forest-2);
+  }
+  footer .wrap{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;flex-wrap:wrap}
+  .foot-mark{display:flex;flex-direction:column;gap:20px}
+  .foot-tag{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:28px;color:var(--cream);line-height:1.25;max-width:18ch}
+  .foot-tag em{color:var(--brass-2)}
+  .foot-meta{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-mute);line-height:2}
+  .foot-meta a:hover{color:var(--brass-2)}
+  .foot-bottom{
+    margin-top:64px;padding-top:28px;border-top:1px solid var(--hairline);
+    display:flex;justify-content:space-between;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-faint);
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <span class="monogram">CS</span>
+      <span class="wordmark"><b>Sullivan Fantastic</b>Atelier of Events</span>
+    </a>
+    <div class="nav-links">
+      <a href="#salon">The Salon</a>
+      <a href="#how">How It Works</a>
+      <a href="#who">Who I Host</a>
+      <a class="nav-cta" href="#begin">Begin →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-photo" role="img" aria-label="Chris Sullivan, warm-lit, mid-performance"></div>
+  <span class="curtain left" aria-hidden="true"></span>
+  <span class="curtain right" aria-hidden="true"></span>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">A Personal Invitation</div>
+    <h1 class="hero-h">An evening, <em>quietly</em> unforgettable.</h1>
+    <p class="hero-sub">A members-only atelier for hosts who'd rather their guests remember the night than the menu.</p>
+    <div class="hero-host"><span class="rule"></span>From Chris Sullivan, your host</div>
+  </div>
+</header>
+
+<!-- LETTER -->
+<section class="letter" id="letter">
+  <div class="wrap letter-grid">
+    <div>
+      <div class="section-label">A note</div>
+      <h2>From my <em>desk</em>.</h2>
+    </div>
+    <div>
+      <p>The first thing I'll tell you is that I don't do gigs. I host evenings. There's a difference, and you'll feel it the moment the room settles and the first phrase lands.</p>
+      <p>For the last decade I've been the voice — and quietly, the producer — behind some of the more particular rooms in the country. Galas where the guest list is half the headline. Weddings where the couple wanted their guests to forget the time. Private dinners where a piano and a story did more than any DJ ever could.</p>
+      <p>If you've found your way here, you probably already know what you're after. Let's talk. I keep a short calendar on purpose, and I answer my own inquiries.</p>
+      <div class="signature">
+        <span class="name">— Chris</span>
+        <span class="role">Sullivan · Founder &amp; Host</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE SALON -->
+<section id="salon">
+  <div class="wrap">
+    <div class="section-label">The Salon</div>
+    <div class="salon-head">
+      <h2>Three kinds of <em>evening</em>.</h2>
+      <p class="lead">No packages. No tiers. Just three rooms I know well — and the instincts to design the night you actually want.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="num">— i.</span>
+        <h3>Private <em>Evenings</em></h3>
+        <p>Milestone birthdays in private homes. Anniversaries on the water. Black-tie dinners with thirty of the right people. The kind of night where the music isn't background — it's the reason everyone stays past midnight. I bring the voice, the band, and the read of the room.</p>
+        <div class="foot">By Introduction</div>
+      </article>
+      <article class="card">
+        <span class="num">— ii.</span>
+        <h3>Corporate &amp; <em>Galas</em></h3>
+        <p>Board dinners, foundation galas, opening nights. The brief is usually the same: keep it elevated, keep it warm, and please, no microphone gymnastics. I work closely with your planner, your AV team, and your honoree — and I show up early. The room runs on cue.</p>
+        <div class="foot">For the Discerning Host</div>
+      </article>
+      <article class="card">
+        <span class="num">— iii.</span>
+        <h3>Weddings &amp; <em>Celebrations</em></h3>
+        <p>One booking per weekend, and only when the chemistry's right. We'll spend real time on what the first dance feels like, what the toasts need underneath them, and what your guests should be humming on the drive home. It's your night. I'm just the one holding the room.</p>
+        <div class="foot">A Single Booking, A Single Night</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE TRIO — moments -->
+<section class="trio">
+  <div class="wrap">
+    <div class="section-label">Moments</div>
+    <h2>A few <em>nights</em>, lately.</h2>
+    <div class="trio-grid">
+      <figure class="moment">
+        <img src="../assets/instagram/ig_05.jpeg" alt="A toast, mid-room" />
+        <figcaption class="cap"><span>Mid-Toast</span>The room exhaled, then leaned back in.</figcaption>
+      </figure>
+      <figure class="moment">
+        <img src="../assets/instagram/ig_03.jpeg" alt="On the water, after sundown" />
+        <figcaption class="cap"><span>On the Water</span>A boat, a chorus, the city behind us.</figcaption>
+      </figure>
+      <figure class="moment">
+        <img src="../assets/instagram/ig_00.jpeg" alt="Backstage, before the open" />
+        <figcaption class="cap"><span>Before the Open</span>The quiet minute that makes the rest of the night.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- WHO I WORK WITH -->
+<section id="who">
+  <div class="wrap who-grid who">
+    <div class="who-portrait" aria-label="Portrait"></div>
+    <div>
+      <div class="section-label">Who I Host</div>
+      <h2>The <em>right</em> room.</h2>
+      <p>Hosts who plan the night themselves. Families on their third milestone. Foundations whose honorees still answer their own emails. Couples whose taste is <em>quieter</em> than their budget. Planners who'd rather not babysit the talent.</p>
+      <p>If your last great evening is still being talked about by the people who were there — we're going to get along.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-label">How It Works</div>
+    <h2>Three <em>conversations</em>. One night.</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="n">— Step one</span>
+        <h3>We <em>talk</em>.</h3>
+        <p>A real call — not a form-reply. Twenty minutes, on the phone, with me. I'll ask about the room, the guests, what's actually being celebrated, and what would make the night feel like yours.</p>
+      </div>
+      <div class="step">
+        <span class="n">— Step two</span>
+        <h3>We design the <em>evening</em>.</h3>
+        <p>A short written treatment: format, set list, key beats, who I'm playing with, when the room rises. Refined with you until it reads exactly the way the night should feel.</p>
+      </div>
+      <div class="step">
+        <span class="n">— Step three</span>
+        <h3>I <em>host</em>.</h3>
+        <p>I arrive early. I shake the right hands. I read the room. I sing. And when the night ends, your guests leave already telling the story of it — which is, in the end, the whole job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCIERGE FORM -->
+<section class="concierge" id="begin">
+  <div class="wrap">
+    <div class="section-label">Concierge</div>
+    <h2>Tell me about <em>the night</em>.</h2>
+    <div class="form-card">
+      <p class="note">A few lines is plenty. I read every note myself, and I reply within forty-eight hours — usually less.</p>
+      <form onsubmit="event.preventDefault();this.querySelector('.begin').textContent='Thank you — I\\'ll be in touch.';this.querySelector('.begin').style.borderColor='var(--brass-2)';">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" type="text" placeholder="So I know who I'm writing back to" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="A line you actually check" required />
+        </div>
+        <div class="field">
+          <label for="note">A few lines about the evening</label>
+          <textarea id="note" placeholder="The date if you have one, the city, the room, and what you're hoping the night feels like. No detail too small."></textarea>
+        </div>
+        <button class="begin" type="submit">Begin</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">
+      <a class="logo" href="#">
+        <span class="monogram">CS</span>
+        <span class="wordmark"><b>Sullivan Fantastic</b>Atelier of Events</span>
+      </a>
+      <p class="foot-tag">Reachable <em>directly</em>. By appointment.</p>
+    </div>
+    <div class="foot-meta">
+      <div>By Introduction</div>
+      <div><a href="#begin">Begin a Conversation</a></div>
+      <div><a href="#">Instagram</a></div>
+      <div><a href="#">Spotify</a></div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>Sullivan Fantastic · Est. 2026</span>
+    <span>A night · A room · A voice</span>
+  </div>
+</footer>
+
+</body>
+</html>

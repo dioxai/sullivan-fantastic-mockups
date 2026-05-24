@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sullivan Fantastic — By Introduction</title>
+<meta name="description" content="A private, theatrical live act for hosts who want the room to remember the night. By introduction. Inquire for dates." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- Reset / base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --black: #000000;
+    --ink: #0a0a0a;
+    --gold: #D4AF37;
+    --gold-soft: rgba(212, 175, 55, 0.45);
+    --gold-hair: rgba(212, 175, 55, 0.22);
+    --ivory: #F5F0E1;
+    --ivory-dim: rgba(245, 240, 225, 0.62);
+    --ivory-faint: rgba(245, 240, 225, 0.32);
+    --rule: rgba(245, 240, 225, 0.10);
+    --measure: 64ch;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--ivory);
+    font-family: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    letter-spacing: 0.005em;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--gold); color: var(--black); }
+
+  /* ---------- Typography helpers ---------- */
+  .serif { font-family: 'Cormorant Garamond', 'Times New Roman', serif; font-weight: 300; }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .eyebrow.ivory { color: var(--ivory-dim); }
+
+  /* ---------- Layout ---------- */
+  .wrap { width: 100%; padding: 0 clamp(20px, 5vw, 64px); margin: 0 auto; max-width: 1680px; }
+  section { position: relative; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px clamp(20px, 5vw, 64px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0));
+    backdrop-filter: blur(2px);
+    transition: background 600ms ease;
+  }
+  .nav.scrolled { background: rgba(0,0,0,0.88); border-bottom: 1px solid var(--rule); }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.34em;
+    color: var(--gold);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .logo .star { color: var(--gold); margin: 0 0.4em; font-size: 0.9em; }
+  .nav-inquire {
+    font-size: 10px; letter-spacing: 0.42em; text-transform: uppercase;
+    color: var(--ivory-dim);
+    transition: color 400ms ease;
+  }
+  .nav-inquire:hover { color: var(--gold); }
+
+  /* ---------- Reveal motion ---------- */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1400ms cubic-bezier(.22,.61,.36,1), transform 1400ms cubic-bezier(.22,.61,.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.delay-1 { transition-delay: 180ms; }
+  .reveal.delay-2 { transition-delay: 360ms; }
+  .reveal.delay-3 { transition-delay: 540ms; }
+  .reveal.delay-4 { transition-delay: 720ms; }
+
+  @keyframes kenburns {
+    0%   { transform: scale(1.0) translate3d(0,0,0); }
+    100% { transform: scale(1.12) translate3d(-1.5%, -1.5%, 0); }
+  }
+  @keyframes vignette-pulse {
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 0.72; }
+  }
+
+  /* ---------- 1. HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('https://scontent-dfw5-2.cdninstagram.com/v/t51.71878-15/659907087_1326689099277139_6590608694654620379_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw5-2.cdninstagram.com');
+    background-size: cover; background-position: center;
+    filter: grayscale(0.55) brightness(0.42) contrast(1.05);
+    animation: kenburns 24s ease-out infinite alternate;
+  }
+  .hero-vignette {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.95) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.85) 100%);
+    animation: vignette-pulse 14s ease-in-out infinite;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 100vh;
+    padding: 120px clamp(20px, 5vw, 64px) 64px;
+  }
+  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; }
+  .hero-top .eyebrow { max-width: 36ch; line-height: 1.9; }
+  .hero-center { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 0; }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(56px, 11vw, 168px);
+    line-height: 0.96;
+    letter-spacing: -0.015em;
+    color: var(--ivory);
+    margin: 0;
+    max-width: 14ch;
+  }
+  .hero-headline .gold { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    margin-top: clamp(28px, 4vw, 48px);
+    max-width: 48ch;
+    color: var(--ivory-dim);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+  .hero-bottom {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .hero-meta {
+    font-size: 10px; letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--ivory-faint);
+  }
+  .inquire-link {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 11px; letter-spacing: 0.46em; text-transform: uppercase;
+    color: var(--gold);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--gold-soft);
+    transition: border-color 400ms ease, letter-spacing 600ms ease;
+  }
+  .inquire-link:hover { border-color: var(--gold); letter-spacing: 0.52em; }
+  .inquire-link .arrow { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; letter-spacing: 0; }
+
+  /* ---------- 2. IMAGE GRID (masonry) ---------- */
+  .gallery { padding: clamp(80px, 12vw, 160px) 0; }
+  .gallery-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 16px; margin-bottom: clamp(40px, 6vw, 72px); }
+  .gallery-head h2 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(32px, 4.4vw, 56px); line-height: 1.1; margin: 0; max-width: 22ch;
+    color: var(--ivory);
+  }
+  .masonry {
+    column-count: 3;
+    column-gap: clamp(12px, 1.6vw, 24px);
+  }
+  .masonry figure { break-inside: avoid; margin: 0 0 clamp(12px, 1.6vw, 24px); position: relative; overflow: hidden; background: #050505; }
+  .masonry img {
+    width: 100%; height: auto; display: block;
+    filter: grayscale(0.25) brightness(0.78) contrast(1.05);
+    transition: filter 1400ms ease, transform 1800ms cubic-bezier(.22,.61,.36,1);
+  }
+  .masonry figure:hover img { filter: grayscale(0) brightness(0.95) contrast(1.05); transform: scale(1.03); }
+  .masonry figcaption {
+    position: absolute; left: 16px; bottom: 14px;
+    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ivory);
+    opacity: 0; transition: opacity 600ms ease;
+    text-shadow: 0 1px 12px rgba(0,0,0,0.9);
+  }
+  .masonry figure:hover figcaption { opacity: 1; }
+
+  @media (max-width: 900px) { .masonry { column-count: 2; } }
+  @media (max-width: 560px) { .masonry { column-count: 1; } }
+
+  /* ---------- 3. SERVICES ---------- */
+  .services { padding: clamp(80px, 12vw, 160px) 0; border-top: 1px solid var(--rule); }
+  .services-head { text-align: center; margin-bottom: clamp(56px, 8vw, 96px); }
+  .services-head h2 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(36px, 5vw, 64px); margin: 18px auto 0; max-width: 24ch; line-height: 1.15;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .service { padding: 12px clamp(24px, 3vw, 56px); position: relative; }
+  .service + .service { border-left: 1px solid var(--gold-hair); }
+  .service-number {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 14px; color: var(--gold);
+    letter-spacing: 0.08em; margin-bottom: 28px;
+  }
+  .service h3 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: clamp(24px, 2.4vw, 32px); margin: 0 0 24px;
+    letter-spacing: 0.005em; color: var(--ivory);
+  }
+  .service p { color: var(--ivory-dim); font-size: 15px; line-height: 1.85; margin: 0 0 28px; }
+  .service ul { list-style: none; padding: 0; margin: 0; }
+  .service ul li {
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ivory-faint);
+    padding: 10px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .service ul li:last-child { border-bottom: 1px solid var(--rule); }
+
+  @media (max-width: 880px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service + .service { border-left: 0; border-top: 1px solid var(--gold-hair); margin-top: 48px; padding-top: 48px; }
+  }
+
+  /* ---------- 4. PULL QUOTE ---------- */
+  .quote {
+    padding: clamp(120px, 18vw, 220px) clamp(20px, 8vw, 120px);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .quote::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: url('https://scontent-dfw5-1.cdninstagram.com/v/t51.71878-15/626473312_1320776466734049_754299358045140159_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw5-1.cdninstagram.com');
+    background-size: cover; background-position: center 30%;
+    filter: grayscale(1) brightness(0.18) contrast(1.1);
+    opacity: 0.55;
+    z-index: 0;
+    animation: kenburns 32s ease-out infinite alternate;
+  }
+  .quote-inner { position: relative; z-index: 1; max-width: 22ch; margin: 0 auto; text-align: center; }
+  .quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 300;
+    font-size: clamp(40px, 7vw, 104px);
+    line-height: 1.08;
+    margin: 0;
+    color: var(--ivory);
+    letter-spacing: -0.01em;
+  }
+  .quote blockquote .gold-mark { color: var(--gold); font-style: normal; }
+  .quote cite {
+    display: block; margin-top: 56px;
+    font-style: normal; font-size: 10px; letter-spacing: 0.46em; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ---------- 5. ABOUT ---------- */
+  .about { padding: clamp(100px, 14vw, 180px) 0; }
+  .about-inner { max-width: 640px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); }
+  .about-eyebrow { text-align: center; margin-bottom: 28px; }
+  .about h2 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(36px, 4.6vw, 60px); line-height: 1.1; margin: 0 0 48px;
+    text-align: center; color: var(--ivory); letter-spacing: -0.005em;
+  }
+  .about-portrait {
+    width: 220px; height: 280px; margin: 0 auto 56px; overflow: hidden; background: #060606;
+    border: 1px solid var(--gold-hair);
+  }
+  .about-portrait img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(0.6) brightness(0.85) contrast(1.05);
+  }
+  .about p {
+    font-size: 17px; line-height: 1.95; color: var(--ivory-dim);
+    margin: 0 0 22px;
+  }
+  .about p.lead { color: var(--ivory); font-size: 19px; }
+  .about-sign {
+    margin-top: 48px; text-align: center;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: var(--gold); font-size: 22px;
+  }
+
+  /* ---------- 6. CONTACT ---------- */
+  .contact { padding: clamp(100px, 14vw, 200px) 0 clamp(80px, 12vw, 160px); border-top: 1px solid var(--rule); text-align: center; }
+  .contact-inner { max-width: 720px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); }
+  .contact .eyebrow { margin-bottom: 36px; }
+  .contact h2 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+    font-size: clamp(40px, 6vw, 88px); line-height: 1.05; margin: 0 0 56px;
+    color: var(--ivory); letter-spacing: -0.01em;
+  }
+  .contact-line {
+    font-size: 15px; color: var(--ivory-dim); line-height: 2;
+    margin: 0 0 56px;
+  }
+  .contact-line a { color: var(--gold); border-bottom: 1px solid var(--gold-hair); padding-bottom: 2px; }
+  .contact-line a:hover { border-color: var(--gold); }
+  .contact-line .ph { color: var(--ivory-faint); font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; margin-left: 6px; }
+  .cta {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 400;
+    font-size: 22px; letter-spacing: 0.04em;
+    color: var(--black); background: var(--gold);
+    padding: 22px 56px;
+    transition: background 400ms ease, color 400ms ease, letter-spacing 400ms ease;
+    border: 1px solid var(--gold);
+  }
+  .cta:hover { background: transparent; color: var(--gold); letter-spacing: 0.08em; }
+  .cta-aside {
+    margin-top: 36px;
+    font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ivory-faint);
+  }
+
+  /* ---------- 7. FOOTER ---------- */
+  .foot {
+    border-top: 1px solid var(--rule);
+    padding: 48px clamp(20px, 5vw, 64px) 56px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+  }
+  .foot .logo { font-size: 13px; }
+  .foot-meta {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ivory-faint);
+  }
+  .foot-social { display: flex; gap: 28px; }
+  .foot-social a {
+    font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ivory-dim);
+    transition: color 400ms ease;
+  }
+  .foot-social a:hover { color: var(--gold); }
+
+  /* ---------- Responsive niceties ---------- */
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .nav { padding: 16px 20px; }
+    .logo { font-size: 12px; letter-spacing: 0.28em; }
+    .hero-inner { padding: 96px 22px 36px; }
+    .hero-top { flex-direction: column; gap: 18px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .hero-sub { font-size: 15px; }
+    .gallery, .services, .about, .contact { padding-left: 0; padding-right: 0; }
+    .foot { flex-direction: column; align-items: flex-start; gap: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a href="#" class="logo">SULLIVAN <span class="star">✦</span> FANTASTIC</a>
+  <a href="#inquire" class="nav-inquire">Inquire</a>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="hero-inner">
+
+    <div class="hero-top reveal">
+      <div class="eyebrow">By Introduction &nbsp;·&nbsp; Est. 2026</div>
+      <div class="eyebrow ivory">A&nbsp;Live&nbsp;Act &nbsp;·&nbsp; Worldwide</div>
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-headline serif reveal delay-1">
+        An evening<br/>
+        the room will<br/>
+        <span class="gold">remember.</span>
+      </h1>
+      <p class="hero-sub reveal delay-2">
+        A private, theatrical live act for hosts who care how the night is told the morning after. Blues, soul, and a voice that reads the room — and answers it.
+      </p>
+    </div>
+
+    <div class="hero-bottom reveal delay-3">
+      <div class="hero-meta">Select dates &nbsp;·&nbsp; By introduction only</div>
+      <a href="#inquire" class="inquire-link">Inquire <span class="arrow">→</span></a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============ 2. IMAGE GRID ============ -->
+<section class="gallery wrap">
+  <div class="gallery-head reveal">
+    <div>
+      <div class="eyebrow" style="margin-bottom: 18px;">— The Rooms —</div>
+      <h2>Private estates, black-tie galas, and the occasional crowd that won&rsquo;t sit down.</h2>
+    </div>
+    <div class="eyebrow ivory">Selected work &nbsp;·&nbsp; 2024 — 2026</div>
+  </div>
+
+  <div class="masonry">
+    <figure class="reveal">
+      <img src="https://scontent-dfw5-2.cdninstagram.com/v/t51.71878-15/671759034_1270208151989888_2410512226217225611_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw5-2.cdninstagram.com" alt="A private evening" loading="lazy" />
+      <figcaption>The Opener</figcaption>
+    </figure>
+    <figure class="reveal delay-1">
+      <img src="https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/670533546_18575871736057352_7504428973943074316_n.jpg?stp=dst-jpg_e15_p640x640_tt6&_nc_ht=scontent-dfw5-2.cdninstagram.com" alt="Prom on the lake" loading="lazy" />
+      <figcaption>On The Water</figcaption>
+    </figure>
+    <figure class="reveal delay-2">
+      <img src="https://scontent-dfw6-1.cdninstagram.com/v/t51.71878-15/658846593_1983691472557009_7740842954755465120_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw6-1.cdninstagram.com" alt="A live act" loading="lazy" />
+      <figcaption>Second Set</figcaption>
+    </figure>
+    <figure class="reveal">
+      <img src="https://scontent-dfw5-2.cdninstagram.com/v/t51.71878-15/659907087_1326689099277139_6590608694654620379_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw5-2.cdninstagram.com" alt="Mazel tov Maddie" loading="lazy" />
+      <figcaption>The Celebration</figcaption>
+    </figure>
+    <figure class="reveal delay-1">
+      <img src="https://scontent-dfw6-1.cdninstagram.com/v/t51.71878-15/658867694_1601160934471357_2059495017793746098_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw6-1.cdninstagram.com" alt="Alamo Heights" loading="lazy" />
+      <figcaption>The Room</figcaption>
+    </figure>
+    <figure class="reveal delay-2">
+      <img src="https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/652818343_18568439242057352_3028748742251329867_n.jpg?stp=dst-jpg_e15_p640x640_tt6&_nc_ht=scontent-dfw5-2.cdninstagram.com" alt="New music" loading="lazy" />
+      <figcaption>The Ballad</figcaption>
+    </figure>
+    <figure class="reveal">
+      <img src="https://scontent-dfw5-1.cdninstagram.com/v/t39.30808-6/650250604_2187151158760475_2838428511133779093_n.jpg?stp=dst-jpg_e15_p640x640_tt6&_nc_ht=scontent-dfw5-1.cdninstagram.com" alt="Tonight" loading="lazy" />
+      <figcaption>Tonight</figcaption>
+    </figure>
+    <figure class="reveal delay-1">
+      <img src="https://scontent-dfw5-1.cdninstagram.com/v/t51.71878-15/626473312_1320776466734049_754299358045140159_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-dfw5-1.cdninstagram.com" alt="Encore" loading="lazy" />
+      <figcaption>The Encore</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 3. SERVICES ============ -->
+<section class="services wrap">
+  <div class="services-head reveal">
+    <div class="eyebrow">— On The Bill —</div>
+    <h2>Three rooms. One showman. Built for the night you intend to be remembered.</h2>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service reveal">
+      <div class="service-number">i.</div>
+      <h3>Private Events</h3>
+      <p>Estates, yachts, milestone birthdays, anniversaries. An intimate program designed for the host who has the room — and intends to fill it with feeling.</p>
+      <ul>
+        <li>Solo with track</li>
+        <li>Trio configuration</li>
+        <li>Programmed to the evening</li>
+      </ul>
+    </div>
+
+    <div class="service reveal delay-1">
+      <div class="service-number">ii.</div>
+      <h3>Corporate Galas</h3>
+      <p>Black-tie evenings, brand dinners, foundation benefits. Theatrical instincts, serious chops — a live act that respects the room and rises to it.</p>
+      <ul>
+        <li>Full seven-piece band</li>
+        <li>Curated program</li>
+        <li>Domestic &amp; international</li>
+      </ul>
+    </div>
+
+    <div class="service reveal delay-2">
+      <div class="service-number">iii.</div>
+      <h3>Weddings</h3>
+      <p>Destination, estate, and black-tie weddings for couples who want a voice that carries the ceremony, the toasts, and the dance floor — without ever overplaying its hand.</p>
+      <ul>
+        <li>Ceremony &amp; reception</li>
+        <li>First-dance arrangements</li>
+        <li>Touring worldwide on request</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 4. PULL QUOTE ============ -->
+<section class="quote">
+  <div class="quote-inner reveal">
+    <blockquote>
+      A live act that reads<br/>
+      the house<br/>
+      <span class="gold-mark">&mdash;</span> and answers it.
+    </blockquote>
+    <cite>From the room &nbsp;·&nbsp; A private evening, 2026</cite>
+  </div>
+</section>
+
+<!-- ============ 5. ABOUT ============ -->
+<section class="about wrap">
+  <div class="about-inner">
+
+    <div class="about-eyebrow eyebrow reveal">— A Word From Chris —</div>
+    <h2 class="reveal delay-1">A man. A microphone. A full house.</h2>
+
+    <div class="about-portrait reveal delay-1">
+      <img src="https://scontent-dfw6-1.cdninstagram.com/v/t51.75761-19/506349730_18507648217057352_8256700815832143189_n.jpg" alt="Chris Sullivan" loading="lazy" />
+    </div>
+
+    <p class="lead reveal delay-2">
+      Sullivan Fantastic is a live act &mdash; a room-filler built for listening rooms, private evenings, and the occasional black-tie gala. Blues, soul, storytelling. Theatrical instincts, serious chops.
+    </p>
+    <p class="reveal delay-2">
+      Two programs on the bill. One voice carrying both. No costume piece, no karaoke, no press-play-and-pray. A live act that reads the room and responds &mdash; and leaves the guests talking the morning after.
+    </p>
+    <p class="reveal delay-3">
+      Based in Houston, touring worldwide on request. Solo, trio, or full seven-piece band &mdash; the program scales; the instincts don&rsquo;t. Bookings, press, and tech-rider inquiries all route through one line, and replies on serious rooms arrive inside 48 hours.
+    </p>
+
+    <div class="about-sign reveal delay-3">— Chris</div>
+  </div>
+</section>
+
+<!-- ============ 6. CONTACT ============ -->
+<section class="contact" id="inquire">
+  <div class="contact-inner">
+    <div class="eyebrow reveal">— Correspondence —</div>
+    <h2 class="reveal delay-1">If you have the room,<br/><em>we&rsquo;ll fill it.</em></h2>
+
+    <p class="contact-line reveal delay-2">
+      For inquiries: <a href="mailto:hello@sullivanfantastic.com">hello@sullivanfantastic.com</a> <span class="ph">[ placeholder ]</span><br/>
+      By telephone: <span style="color:var(--ivory-dim);">+1 (000) 000&ndash;0000</span> <span class="ph">[ placeholder ]</span><br/>
+      Inquiries route directly to Chris. 48 hours for serious rooms.
+    </p>
+
+    <a href="#inquire" class="cta reveal delay-3">Begin the Conversation</a>
+    <div class="cta-aside reveal delay-3">By introduction &nbsp;·&nbsp; Select dates remain</div>
+  </div>
+</section>
+
+<!-- ============ 7. FOOTER ============ -->
+<footer class="foot">
+  <a href="#" class="logo">SULLIVAN <span class="star">✦</span> FANTASTIC</a>
+  <div class="foot-meta">EST. 2026 &nbsp;·&nbsp; A night, a room, a voice</div>
+  <div class="foot-social">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Spotify</a>
+  </div>
+</footer>
+
+<script>
+  // Slow reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>

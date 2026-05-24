@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sullivan Fantastic — Design Directions for Chris's Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a0a0a;color:#f5f0e1;font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1280px;margin:0 auto;padding:64px 32px 96px}
+  header{text-align:center;margin-bottom:80px;border-bottom:1px solid rgba(212,175,55,.2);padding-bottom:64px}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#d4af37;font-weight:500;margin-bottom:24px}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5vw,72px);line-height:1.05;font-style:italic;margin-bottom:24px}
+  h1 span{color:#d4af37;font-style:normal;font-weight:400}
+  header p{max-width:620px;margin:0 auto;color:rgba(245,240,225,.7);font-size:17px;line-height:1.7}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr;gap:24px}.wrap{padding:48px 20px}}
+  .card{background:#111;border:1px solid rgba(212,175,55,.15);border-radius:4px;overflow:hidden;transition:all .4s ease;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+  .card:hover{border-color:rgba(212,175,55,.5);transform:translateY(-4px)}
+  .card-img{aspect-ratio:16/10;background:#000;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:48px;color:rgba(212,175,55,.4);position:relative;overflow:hidden}
+  .card-a .card-img{background:linear-gradient(135deg,#000,#1a1a1a)}
+  .card-b .card-img{background:linear-gradient(135deg,#f8f4ec,#e8e0d0);color:rgba(91,26,26,.4)}
+  .card-c .card-img{background:linear-gradient(135deg,#0f1e1a,#3b0f0f);color:rgba(168,120,58,.5)}
+  .card-d .card-img{background:linear-gradient(135deg,#0a0a0a,#1a1a1a);color:#f5c518}
+  .card-d .card-img span{font-family:'Inter',sans-serif;font-weight:700;font-style:normal;letter-spacing:-.02em;text-shadow:0 0 40px rgba(245,197,24,.3)}
+  .card-body{padding:32px 28px}
+  .card-letter{display:inline-block;width:32px;height:32px;border:1px solid #d4af37;border-radius:50%;text-align:center;line-height:30px;font-size:13px;color:#d4af37;margin-bottom:16px;font-family:'Cormorant Garamond',serif}
+  .card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:32px;line-height:1.1;margin-bottom:12px}
+  .card .label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#d4af37;margin-bottom:14px;font-weight:500}
+  .card p{color:rgba(245,240,225,.65);font-size:14.5px;line-height:1.65;margin-bottom:20px}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid rgba(212,175,55,.12);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,225,.45)}
+  .card .meta strong{color:#d4af37;font-weight:500}
+  .footer-note{margin-top:80px;text-align:center;padding-top:40px;border-top:1px solid rgba(212,175,55,.15);font-size:13px;color:rgba(245,240,225,.45)}
+  .footer-note p{margin-bottom:8px}
+  .picker{margin-top:60px;background:#0d0d0d;border:1px solid rgba(212,175,55,.2);border-radius:4px;padding:40px;text-align:center}
+  .picker h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;margin-bottom:8px}
+  .picker p{color:rgba(245,240,225,.65);font-size:15px;margin-bottom:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sullivan Fantastic · Design Exploration · Monday Review</div>
+    <h1>Four directions for <span>your next site.</span></h1>
+    <p>Each one is a complete visual world built from your existing voice — theatrical, refined, hosted. Real photos pulled from your Instagram and TikTok. Click any direction to explore. Pick one (or mix two) and we'll build it out.</p>
+  </header>
+
+  <div class="grid">
+
+    <a class="card card-a" href="./direction-a/">
+      <div class="card-img">an evening<br>the room will <em style="color:#d4af37">remember.</em></div>
+      <div class="card-body">
+        <div class="card-letter">A</div>
+        <div class="label">Black-Tie Cinematic</div>
+        <h2>Hushed. Whispered. Bond opening.</h2>
+        <p>Pure black canvas. Champagne gold used like a rare ingredient. Cormorant Garamond italics at scale. Slow scroll reveals on full-bleed photography. The site equivalent of an unmarked door at the right address.</p>
+        <div class="meta"><span>For: ultra-private clients</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+    <a class="card card-b" href="./direction-b/">
+      <div class="card-img" style="color:rgba(91,26,26,.55)">THE<br>GENTLEMAN<br>HOST</div>
+      <div class="card-body">
+        <div class="card-letter">B</div>
+        <div class="label">Editorial Magazine</div>
+        <h2>Vogue feature spread.</h2>
+        <p>Warm ivory. Oxblood pull quotes. Playfair Display at 168px. Drop caps. Volume / Issue masthead. He's the talent on the cover, not a vendor in a directory. Built for clients who read Robb Report.</p>
+        <div class="meta"><span>For: status &amp; storytelling</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+    <a class="card card-c" href="./direction-c/">
+      <div class="card-img">a personal<br><em style="color:#c99554">invitation.</em></div>
+      <div class="card-body">
+        <div class="card-letter">C</div>
+        <div class="label">Atelier Concierge</div>
+        <h2>Soho House meets jazz lounge.</h2>
+        <p>Forest green and oxblood. Brass type accents. Glass-morphism cards. Written in Chris's first person, signed at the bottom. Intimate, warm, and personal — the opposite of cold luxury. A members-only feel.</p>
+        <div class="meta"><span>For: relationship buyers</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+    <a class="card card-d" href="./direction-d/">
+      <div class="card-img"><span>SULLIVAN</span></div>
+      <div class="card-body">
+        <div class="card-letter">D</div>
+        <div class="label">Modern Maximalist</div>
+        <h2>Built for the big room.</h2>
+        <p>Obsidian black + electric gold. 320px display type. Marquee tickers. Stat blocks (169K followers, etc.). Hover-glow cards. Sticky CTA. Closest to Collective Entertainment's energy. Loud, confident, modern — but still luxury.</p>
+        <div class="meta"><span>For: scale &amp; bookings</span><strong>OPEN →</strong></div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="picker">
+    <h3>Pick one. Or mix.</h3>
+    <p>Chris can pick a single direction, or tell us "the typography from B with the palette from C." We'll build the chosen direction into a full production site (chatbot, CRM, booking, real domain) — same fast pipeline we use for Diox itself.</p>
+  </div>
+
+  <div class="footer-note">
+    <p>Static design mockups · Not connected to sullivanfantastic.com · No mail routing live · Pricing intentionally hidden</p>
+    <p style="margin-top:14px">Photography pulled from @sullivanfantastic and @chrissullivanofficial — Chris's actual work.</p>
+    <p style="margin-top:14px;color:rgba(212,175,55,.6);letter-spacing:.2em;text-transform:uppercase;font-size:10px">Built overnight by Diox · Linear DIO-32 · For review Monday</p>
+  </div>
+</div>
+</body>
+</html>
